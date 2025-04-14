@@ -3,18 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Professional AI Task Flow Diagram</title>
+  <title>Automated AI Task Flow Process</title>
   <style>
     :root {
-      --primary-color: #6200ea;
-      --secondary-color: #3700b3;
-      --accent-color: #bb86fc;
-      --background-dark: #121212;
-      --background-light: #1e1e1e;
+      --primary-color: #4a6bff;
+      --secondary-color: #3a56d4;
+      --accent-color: #6c8eff;
+      --success-color: #00c853;
+      --warning-color: #ffab00;
+      --error-color: #ff5252;
+      --background-dark: #0f172a;
+      --background-light: #1e293b;
+      --surface-dark: #1e293b;
+      --surface-light: #334155;
       --text-primary: #ffffff;
-      --text-secondary: rgba(255, 255, 255, 0.7);
-      --shadow-color: rgba(0, 0, 0, 0.5);
-      --node-border-radius: 12px;
+      --text-secondary: #e2e8f0;
+      --text-tertiary: #94a3b8;
+      --shadow-color: rgba(0, 0, 0, 0.3);
+      --node-border-radius: 16px;
+      --transition-speed: 0.4s;
     }
     
     * {
@@ -24,7 +31,7 @@
     }
     
     body {
-      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', Oxygen, Ubuntu, Cantarell, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -32,18 +39,21 @@
       background: linear-gradient(135deg, var(--background-dark), var(--background-light));
       color: var(--text-primary);
       overflow: hidden;
+      position: relative;
+      line-height: 1.6;
     }
     
     .diagram-container {
       position: relative;
-      width: 800px;
-      height: 500px;
-      background-color: rgba(18, 18, 18, 0.8);
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 15px 35px var(--shadow-color);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      width: 900px;
+      height: 600px;
+      background-color: var(--surface-dark);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 20px 40px var(--shadow-color);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all var(--transition-speed) ease;
       overflow: hidden;
     }
     
@@ -54,13 +64,19 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(98, 0, 234, 0.08) 0%, rgba(98, 0, 234, 0.03) 40%, transparent 70%);
+      background: radial-gradient(circle, rgba(74, 107, 255, 0.1) 0%, rgba(74, 107, 255, 0.05) 40%, transparent 70%);
       z-index: 0;
+      animation: rotate-gradient 60s linear infinite;
+    }
+    
+    @keyframes rotate-gradient {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
     
     .title-container {
       position: absolute;
-      top: 20px;
+      top: 30px;
       left: 0;
       width: 100%;
       text-align: center;
@@ -68,43 +84,44 @@
     }
     
     .title {
-      font-size: 28px;
+      font-size: 32px;
       font-weight: 700;
-      background: linear-gradient(90deg, #bb86fc, #6200ea);
+      background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 5px;
-      letter-spacing: 1px;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
     }
     
     .subtitle {
-      font-size: 14px;
-      color: var(--text-secondary);
+      font-size: 16px;
+      color: var(--text-tertiary);
       font-weight: 400;
-      opacity: 0.8;
+      max-width: 600px;
+      margin: 0 auto;
     }
     
     .node {
       position: absolute;
       border-radius: var(--node-border-radius);
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: all var(--transition-speed) cubic-bezier(0.34, 1.56, 0.64, 1);
       cursor: pointer;
       text-align: center;
       font-weight: 600;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
       z-index: 5;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      padding: 20px;
-      will-change: transform;
+      padding: 24px;
+      border: 1px solid transparent;
     }
     
     .node:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
     }
     
     .node::before {
@@ -113,7 +130,7 @@
       inset: 0;
       padding: 2px;
       border-radius: var(--node-border-radius);
-      background: linear-gradient(45deg, var(--accent-color), transparent);
+      background: linear-gradient(135deg, var(--accent-color), transparent);
       -webkit-mask: 
         linear-gradient(#fff 0 0) content-box, 
         linear-gradient(#fff 0 0);
@@ -123,7 +140,7 @@
       -webkit-mask-composite: xor;
       mask-composite: exclude;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity var(--transition-speed) ease;
     }
     
     .node:hover::before {
@@ -131,55 +148,60 @@
     }
     
     .node-icon {
-      margin-bottom: 8px;
-      font-size: 24px;
-      color: var(--accent-color);
+      margin-bottom: 12px;
+      font-size: 32px;
+      transition: all var(--transition-speed) ease;
     }
     
     .node-label {
-      font-size: 16px;
+      font-size: 18px;
       letter-spacing: 0.5px;
+      margin-bottom: 4px;
+      transition: all var(--transition-speed) ease;
     }
     
     .node-description {
-      font-size: 12px;
-      color: var(--text-secondary);
-      margin-top: 5px;
+      font-size: 14px;
+      color: var(--text-tertiary);
+      margin-top: 8px;
       max-width: 90%;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      height: 0;
+      overflow: hidden;
+      transition: all var(--transition-speed) ease;
     }
     
     .node:hover .node-description {
       opacity: 1;
+      height: auto;
     }
     
     .task-node {
-      left: 60px;
-      top: 200px;
-      width: 140px;
-      height: 110px;
-      background: linear-gradient(135deg, rgba(98, 0, 234, 0.2), rgba(55, 0, 179, 0.2));
-      border: 1px solid rgba(98, 0, 234, 0.3);
+      left: 80px;
+      top: 240px;
+      width: 160px;
+      height: 140px;
+      background: linear-gradient(135deg, rgba(74, 107, 255, 0.15), rgba(58, 86, 212, 0.15));
+      border: 1px solid rgba(74, 107, 255, 0.2);
     }
     
     .agent-node {
-      left: 330px;
-      top: 170px;
-      width: 160px;
-      height: 160px;
+      left: 380px;
+      top: 200px;
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
-      background: linear-gradient(135deg, rgba(98, 0, 234, 0.3), rgba(55, 0, 179, 0.3));
-      border: 1px solid rgba(98, 0, 234, 0.4);
+      background: linear-gradient(135deg, rgba(74, 107, 255, 0.2), rgba(58, 86, 212, 0.2));
+      border: 1px solid rgba(74, 107, 255, 0.3);
     }
     
     .limit-node {
-      right: 60px;
-      top: 200px;
-      width: 140px;
-      height: 110px;
-      background: linear-gradient(135deg, rgba(98, 0, 234, 0.2), rgba(55, 0, 179, 0.2));
-      border: 1px solid rgba(98, 0, 234, 0.3);
+      right: 80px;
+      top: 240px;
+      width: 160px;
+      height: 140px;
+      background: linear-gradient(135deg, rgba(74, 107, 255, 0.15), rgba(58, 86, 212, 0.15));
+      border: 1px solid rgba(74, 107, 255, 0.2);
     }
     
     .connection {
@@ -188,7 +210,6 @@
       transform-origin: left center;
       z-index: 2;
       pointer-events: none;
-      will-change: transform;
     }
     
     .connection-path {
@@ -211,42 +232,43 @@
       border-left: 10px solid var(--accent-color);
       border-top: 5px solid transparent;
       border-bottom: 5px solid transparent;
-      filter: drop-shadow(0 0 2px rgba(187, 134, 252, 0.5));
+      filter: drop-shadow(0 0 4px rgba(108, 142, 255, 0.5));
     }
     
     .connection-label {
       position: absolute;
-      font-size: 11px;
-      background-color: rgba(18, 18, 18, 0.8);
-      padding: 3px 8px;
-      border-radius: 10px;
+      font-size: 12px;
+      background-color: var(--surface-light);
+      padding: 4px 12px;
+      border-radius: 12px;
       white-space: nowrap;
       color: var(--text-secondary);
       transform: translateY(-50%);
-      border: 1px solid rgba(187, 134, 252, 0.3);
+      border: 1px solid rgba(108, 142, 255, 0.2);
+      font-weight: 500;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
     
     .dot {
       position: absolute;
-      width: 10px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
       background: var(--accent-color);
       border-radius: 50%;
-      filter: drop-shadow(0 0 5px var(--accent-color));
+      filter: drop-shadow(0 0 8px var(--accent-color));
       z-index: 3;
       pointer-events: none;
-      will-change: transform;
+      transform: translate(-50%, -50%);
     }
     
     .particle {
       position: absolute;
-      width: 3px;
-      height: 3px;
-      background: rgba(187, 134, 252, 0.5);
+      width: 4px;
+      height: 4px;
+      background: rgba(108, 142, 255, 0.6);
       border-radius: 50%;
       pointer-events: none;
       z-index: 1;
-      will-change: transform;
     }
     
     .pulse {
@@ -255,30 +277,31 @@
     
     @keyframes pulse-animation {
       0% {
-        box-shadow: 0 0 0 0 rgba(187, 134, 252, 0.7);
+        box-shadow: 0 0 0 0 rgba(108, 142, 255, 0.7);
       }
       70% {
-        box-shadow: 0 0 0 15px rgba(187, 134, 252, 0);
+        box-shadow: 0 0 0 20px rgba(108, 142, 255, 0);
       }
       100% {
-        box-shadow: 0 0 0 0 rgba(187, 134, 252, 0);
+        box-shadow: 0 0 0 0 rgba(108, 142, 255, 0);
       }
     }
     
     .tooltip {
       position: absolute;
-      background: rgba(18, 18, 18, 0.9);
-      border: 1px solid rgba(187, 134, 252, 0.3);
+      background: var(--surface-light);
+      border: 1px solid rgba(108, 142, 255, 0.2);
       color: var(--text-primary);
-      padding: 10px 15px;
-      border-radius: 8px;
+      padding: 16px;
+      border-radius: 12px;
       font-size: 14px;
-      max-width: 250px;
+      max-width: 280px;
       z-index: 100;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: opacity var(--transition-speed) ease;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(12px);
     }
     
     .tooltip.active {
@@ -286,161 +309,198 @@
     }
     
     .tooltip-title {
-      font-weight: 600;
+      font-weight: 700;
       color: var(--accent-color);
-      margin-bottom: 5px;
+      margin-bottom: 8px;
+      font-size: 16px;
     }
     
-    @media (max-width: 900px) {
+    .tooltip-content {
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    
+    .status-indicator {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--text-tertiary);
+      z-index: 10;
+    }
+    
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: var(--success-color);
+      animation: status-pulse 2s infinite;
+    }
+    
+    @keyframes status-pulse {
+      0% { opacity: 0.7; }
+      50% { opacity: 1; }
+      100% { opacity: 0.7; }
+    }
+    
+    @media (max-width: 1000px) {
       .diagram-container {
         width: 90%;
-        height: 450px;
+        height: 500px;
       }
     }
     
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
       .diagram-container {
-        height: 400px;
+        height: 450px;
+        padding: 30px;
       }
       
       .task-node, .limit-node {
-        width: 100px;
-      }
-      
-      .agent-node {
         width: 120px;
         height: 120px;
       }
+      
+      .agent-node {
+        width: 140px;
+        height: 140px;
+      }
+      
+      .node-icon {
+        font-size: 24px;
+      }
+      
+      .node-label {
+        font-size: 16px;
+      }
+      
+      .title {
+        font-size: 24px;
+      }
+      
+      .subtitle {
+        font-size: 14px;
+      }
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="diagram-container" id="diagramContainer">
     <div class="title-container">
-      <h1 class="title">AI Task Flow Process</h1>
-      <p class="subtitle">Interactive visualization of AI task processing pipeline</p>
+      <h1 class="title">Automated AI Task Flow</h1>
+      <p class="subtitle">Continuous processing workflow with safety validation</p>
+    </div>
+    
+    <div class="status-indicator">
+      <div class="status-dot"></div>
+      <span id="statusText">System Active</span>
     </div>
     
     <div class="node task-node" id="taskNode">
-      <div class="node-icon">⚙️</div>
+      <div class="node-icon">📥</div>
       <div class="node-label">Task Input</div>
-
+      <div class="node-description">User requests processed through API gateway with initial validation</div>
     </div>
     
     <div class="node agent-node" id="agentNode">
-      <div class="node-icon">🤖</div>
-      <div class="node-label">AI Agent</div>
-    
+      <div class="node-icon">🧠</div>
+      <div class="node-label">AI Processor</div>
+      <div class="node-description">Core intelligence with multiple specialized models and decision logic</div>
     </div>
     
     <div class="node limit-node" id="limitNode">
-    <div class="node-icon">
-      <img src="llmicon.png" alt="LLM Icon" style="width: 24px; height: 24px;">
-    </div>
-      
- 
+      <div class="node-icon">🛡️</div>
+      <div class="node-label">Safety Layer</div>
+      <div class="node-description">Content moderation, ethical constraints, and compliance checks</div>
     </div>
     
     <div class="connection" id="taskToAgent">
       <div class="connection-path"></div>
-     
+      <div class="connection-label" id="labelTaskToAgent">Request</div>
     </div>
     
     <div class="connection" id="agentToLimit">
       <div class="connection-path"></div>
-    
+      <div class="connection-label" id="labelAgentToLimit">Validation</div>
     </div>
     
     <div class="connection" id="limitToAgent">
       <div class="connection-path"></div>
-    
+      <div class="connection-label" id="labelLimitToAgent">Approval</div>
     </div>
     
     <div class="connection" id="agentToTask">
       <div class="connection-path"></div>
-      
+      <div class="connection-label" id="labelAgentToTask">Response</div>
     </div>
     
     <div class="tooltip" id="tooltip">
-      <div class="tooltip-title">Information</div>
-      <div class="tooltip-content">Hover over elements for details</div>
+      <div class="tooltip-title">System Information</div>
+      <div class="tooltip-content">Hover over components to view detailed descriptions of each workflow element.</div>
     </div>
   </div>
 
   <script>
-    class DiagramAnimator {
-      constructor() {
-        // Cache DOM elements
-        this.diagramContainer = document.getElementById('diagramContainer');
-        this.taskNode = document.getElementById('taskNode');
-        this.agentNode = document.getElementById('agentNode');
-        this.limitNode = document.getElementById('limitNode');
-        this.connections = {
-          taskToAgent: document.getElementById('taskToAgent'),
-          agentToLimit: document.getElementById('agentToLimit'),
-          limitToAgent: document.getElementById('limitToAgent'),
-          agentToTask: document.getElementById('agentToTask')
-        };
-        this.labels = {
-          taskToAgent: document.getElementById('labelTaskToAgent'),
-          agentToLimit: document.getElementById('labelAgentToLimit'),
-          limitToAgent: document.getElementById('labelLimitToAgent'),
-          agentToTask: document.getElementById('labelAgentToTask')
-        };
-        this.tooltip = document.getElementById('tooltip');
+    document.addEventListener('DOMContentLoaded', function() {
+      // DOM Elements
+      const diagramContainer = document.getElementById('diagramContainer');
+      const taskNode = document.getElementById('taskNode');
+      const agentNode = document.getElementById('agentNode');
+      const limitNode = document.getElementById('limitNode');
+      const taskToAgent = document.getElementById('taskToAgent');
+      const agentToLimit = document.getElementById('agentToLimit');
+      const limitToAgent = document.getElementById('limitToAgent');
+      const agentToTask = document.getElementById('agentToTask');
+      const tooltip = document.getElementById('tooltip');
+      const statusText = document.getElementById('statusText');
+      
+      // Animation state
+      let currentAnimationStep = 0;
+      let animationTimeout = null;
+      let currentDots = [];
+      let animationFrameId = null;
+      let isRunning = true;
+      
+      // Initialize the diagram
+      function init() {
+        createParticles();
+        drawConnections();
+        setupEventListeners();
+        startWorkflow();
         
-        // Animation state
-        this.animationRunning = true;
-        this.currentAnimationStep = 0;
-        this.animationTimeout = null;
-        this.currentDots = [];
-        this.particles = [];
-        
-        // Initialize
-        this.init();
+        // Handle window resize
+        window.addEventListener('resize', () => {
+          drawConnections();
+          positionConnectionLabels();
+        });
       }
       
-      init() {
-        this.createParticles();
-        this.drawConnections();
-        this.setupEventListeners();
-        this.startAnimation();
+      // Create background particles
+      function createParticles() {
+        // Remove existing particles
+        document.querySelectorAll('.particle').forEach(particle => particle.remove());
         
-        // Debounced resize handler
-        window.addEventListener('resize', this.debounce(() => this.drawConnections(), 100));
-      }
-      
-      debounce(func, wait) {
-        let timeout;
-        return function() {
-          const context = this;
-          const args = arguments;
-          clearTimeout(timeout);
-          timeout = setTimeout(() => func.apply(context, args), wait);
-        };
-      }
-      
-      createParticles() {
-        // Clear existing particles
-        this.particles.forEach(particle => particle.remove());
-        this.particles = [];
-        
-        // Create new particles
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 40; i++) {
           const particle = document.createElement('div');
           particle.className = 'particle';
           particle.style.left = `${Math.random() * 100}%`;
           particle.style.top = `${Math.random() * 100}%`;
-          particle.style.opacity = Math.random() * 0.5 + 0.2;
-          this.diagramContainer.appendChild(particle);
-          this.particles.push(particle);
+          particle.style.opacity = Math.random() * 0.6 + 0.2;
+          particle.style.width = `${Math.random() * 4 + 2}px`;
+          particle.style.height = particle.style.width;
+          diagramContainer.appendChild(particle);
           
-          this.animateParticle(particle);
+          animateParticle(particle);
         }
       }
       
-      animateParticle(particle) {
-        const duration = Math.random() * 15000 + 10000;
+      // Animate a background particle
+      function animateParticle(particle) {
+        const duration = Math.random() * 20000 + 10000;
         const startX = parseFloat(particle.style.left);
         const startY = parseFloat(particle.style.top);
         const endX = Math.random() * 100;
@@ -448,42 +508,54 @@
         
         const startTime = performance.now();
         
-        const move = (time) => {
-          if (!this.animationRunning) return;
-          
+        function move(time) {
           const elapsed = time - startTime;
           const progress = (elapsed % duration) / duration;
           
-          const currentX = startX + (endX - startX) * progress;
-          const currentY = startY + (endY - startY) * progress;
+          // Use easing function for smoother movement
+          const easedProgress = easeInOutCubic(progress);
+          
+          const currentX = startX + (endX - startX) * easedProgress;
+          const currentY = startY + (endY - startY) * easedProgress;
           
           particle.style.left = `${currentX}%`;
           particle.style.top = `${currentY}%`;
           
-          requestAnimationFrame(move);
-        };
+          // Randomly change opacity for twinkling effect
+          if (Math.random() > 0.95) {
+            particle.style.opacity = Math.random() * 0.6 + 0.2;
+          }
+          
+          animationFrameId = requestAnimationFrame(move);
+        }
         
-        requestAnimationFrame(move);
+        move(performance.now());
       }
       
-      drawConnections() {
-        const containerRect = this.diagramContainer.getBoundingClientRect();
-        const taskRect = this.taskNode.getBoundingClientRect();
-        const agentRect = this.agentNode.getBoundingClientRect();
-        const limitRect = this.limitNode.getBoundingClientRect();
+      // Easing function
+      function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      }
+      
+      // Draw connection lines between nodes
+      function drawConnections() {
+        const containerRect = diagramContainer.getBoundingClientRect();
+        const taskRect = taskNode.getBoundingClientRect();
+        const agentRect = agentNode.getBoundingClientRect();
+        const limitRect = limitNode.getBoundingClientRect();
         
         // Task to Agent
-        this.setConnection(
-          this.connections.taskToAgent,
+        setConnection(
+          taskToAgent,
           taskRect.right - containerRect.left,
           taskRect.top + taskRect.height/2 - containerRect.top,
           agentRect.left - containerRect.left,
-          agentRect.top + agentRect.height/2 - 20 - containerRect.top
+          agentRect.top + agentRect.height/2 - containerRect.top
         );
         
         // Agent to Limit
-        this.setConnection(
-          this.connections.agentToLimit,
+        setConnection(
+          agentToLimit,
           agentRect.right - containerRect.left,
           agentRect.top + agentRect.height/2 - containerRect.top,
           limitRect.left - containerRect.left,
@@ -491,8 +563,8 @@
         );
         
         // Limit to Agent
-        this.setConnection(
-          this.connections.limitToAgent,
+        setConnection(
+          limitToAgent,
           limitRect.left - containerRect.left,
           limitRect.top + limitRect.height/2 + 20 - containerRect.top,
           agentRect.right - containerRect.left,
@@ -500,19 +572,17 @@
         );
         
         // Agent to Task
-        this.setConnection(
-          this.connections.agentToTask,
+        setConnection(
+          agentToTask,
           agentRect.left - containerRect.left,
           agentRect.top + agentRect.height/2 + 20 - containerRect.top,
           taskRect.right - containerRect.left,
           taskRect.top + taskRect.height/2 + 20 - containerRect.top
         );
-        
-        // Position connection labels
-        this.positionConnectionLabels();
       }
       
-      setConnection(connection, x1, y1, x2, y2) {
+      // Set connection properties
+      function setConnection(connection, x1, y1, x2, y2) {
         const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
         const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
         
@@ -522,50 +592,68 @@
         connection.style.transform = `rotate(${angle}deg)`;
       }
       
-      positionConnectionLabels() {
-        // Position all labels similarly
-        Object.values(this.labels).forEach(label => {
-          label.style.left = '50%';
-          label.style.top = '-12px';
-          label.style.transform = 'translate(-50%, -50%)';
-        });
+      // Position the labels for connections
+      function positionConnectionLabels() {
+        // Position Task to Agent label
+        const taskToAgentRect = taskToAgent.getBoundingClientRect();
+        const containerRect = diagramContainer.getBoundingClientRect();
+        
+        labelTaskToAgent.style.left = `${taskToAgentRect.width * 0.4}px`;
+        labelTaskToAgent.style.top = `${-12}px`;
+        
+        // Position Agent to Limit label
+        labelAgentToLimit.style.left = `${agentToLimit.getBoundingClientRect().width * 0.4}px`;
+        labelAgentToLimit.style.top = `${-12}px`;
+        
+        // Position Limit to Agent label
+        labelLimitToAgent.style.left = `${limitToAgent.getBoundingClientRect().width * 0.4}px`;
+        labelLimitToAgent.style.top = `${-12}px`;
+        
+        // Position Agent to Task label
+        labelAgentToTask.style.left = `${agentToTask.getBoundingClientRect().width * 0.4}px`;
+        labelAgentToTask.style.top = `${-12}px`;
       }
       
-      setupEventListeners() {
+      // Set up event listeners
+      function setupEventListeners() {
         // Node hover tooltips
-        const nodes = [this.taskNode, this.agentNode, this.limitNode];
-        const tooltipData = {
-          taskNode: {
-            title: "Task Input",
-            content: "The system receives an initial request that needs processing. This could be a question, command, or data for analysis."
-          },
-          agentNode: {
-            title: "AI Agent",
-            content: "The core intelligence that processes the task, applying various algorithms and models to generate an appropriate response."
-          },
-          limitNode: {
-            title: "Safety Guardrails",
-            content: "A system of rules and boundaries that ensure AI outputs are safe, ethical, and appropriate according to defined parameters."
-          }
-        };
-        
+        const nodes = [taskNode, agentNode, limitNode];
         nodes.forEach(node => {
           node.addEventListener('mouseenter', (e) => {
             const rect = node.getBoundingClientRect();
-            const containerRect = this.diagramContainer.getBoundingClientRect();
+            const containerRect = diagramContainer.getBoundingClientRect();
             
-            const data = tooltipData[node.id];
-            this.tooltip.querySelector('.tooltip-title').textContent = data.title;
-            this.tooltip.querySelector('.tooltip-content').textContent = data.content;
+            let tooltipTitle = "";
+            let tooltipContent = "";
             
-            this.tooltip.style.left = `${rect.left - containerRect.left + rect.width/2}px`;
-            this.tooltip.style.top = `${rect.top - containerRect.top - 10}px`;
-            this.tooltip.style.transform = 'translate(-50%, -100%)';
-            this.tooltip.classList.add('active');
+            if (node === taskNode) {
+              tooltipTitle = "Task Input Gateway";
+              tooltipContent = "The entry point for all system requests. Processes authentication, rate limiting, and initial validation before forwarding to the AI processor. Includes API versioning and request formatting.";
+            } else if (node === agentNode) {
+              tooltipTitle = "AI Processing Core";
+              tooltipContent = "Central intelligence unit with multiple specialized models. Handles request routing, model selection, and response generation. Includes caching mechanisms and fallback strategies for high availability.";
+            } else if (node === limitNode) {
+              tooltipTitle = "Safety & Compliance Layer";
+              tooltipContent = "Ensures all outputs meet organizational standards and regulatory requirements. Includes content moderation, ethical constraints, data privacy checks, and logging for audit purposes.";
+            }
+            
+            tooltip.querySelector('.tooltip-title').textContent = tooltipTitle;
+            tooltip.querySelector('.tooltip-content').textContent = tooltipContent;
+            
+            tooltip.style.left = `${rect.left - containerRect.left + rect.width/2}px`;
+            tooltip.style.top = `${rect.top - containerRect.top - 10}px`;
+            tooltip.style.transform = 'translate(-50%, -100%)';
+            tooltip.classList.add('active');
+            
+            // Highlight the node
+            node.style.borderColor = 'rgba(108, 142, 255, 0.5)';
+            node.style.boxShadow = '0 0 0 2px rgba(108, 142, 255, 0.3)';
           });
           
           node.addEventListener('mouseleave', () => {
-            this.tooltip.classList.remove('active');
+            tooltip.classList.remove('active');
+            node.style.borderColor = '';
+            node.style.boxShadow = '';
           });
           
           // Node click effect
@@ -573,168 +661,192 @@
             nodes.forEach(n => n.classList.remove('pulse'));
             node.classList.add('pulse');
             setTimeout(() => node.classList.remove('pulse'), 2000);
+            
+            // Update status indicator
+            statusText.textContent = `Accessing ${node.querySelector('.node-label').textContent}`;
           });
         });
       }
       
-      startAnimation() {
-        if (!this.animationRunning) return;
-        
-        this.clearAnimation();
-        [this.taskNode, this.agentNode, this.limitNode].forEach(node => node.classList.remove('pulse'));
-        this.runAnimationStep();
+      // Start the automated workflow
+      function startWorkflow() {
+        runWorkflowStep();
       }
       
-      clearAnimation() {
-        clearTimeout(this.animationTimeout);
-        this.currentDots.forEach(dot => dot.remove());
-        this.currentDots = [];
+      // Run a single step of the workflow
+      function runWorkflowStep() {
+        const containerRect = diagramContainer.getBoundingClientRect();
+        const taskRect = taskNode.getBoundingClientRect();
+        const agentRect = agentNode.getBoundingClientRect();
+        const limitRect = limitNode.getBoundingClientRect();
+        
+        // Reset all node highlights
+        [taskNode, agentNode, limitNode].forEach(node => node.classList.remove('pulse'));
+        
+        switch (currentAnimationStep) {
+          case 0: // Task to Agent
+            taskNode.classList.add('pulse');
+            statusText.textContent = 'Processing Request';
+            animationTimeout = setTimeout(() => {
+              animateDot(
+                taskRect.right - containerRect.left,
+                taskRect.top + taskRect.height/2 - containerRect.top,
+                agentRect.left - containerRect.left,
+                agentRect.top + agentRect.height/2 - containerRect.top,
+                1200,
+                () => {
+                  taskNode.classList.remove('pulse');
+                  currentAnimationStep = 1;
+                  runWorkflowStep();
+                }
+              );
+            }, 800);
+            break;
+            
+          case 1: // Agent to Limit
+            agentNode.classList.add('pulse');
+            statusText.textContent = 'Validating Content';
+            animationTimeout = setTimeout(() => {
+              animateDot(
+                agentRect.right - containerRect.left,
+                agentRect.top + agentRect.height/2 - containerRect.top,
+                limitRect.left - containerRect.left,
+                limitRect.top + limitRect.height/2 - containerRect.top,
+                1200,
+                () => {
+                  agentNode.classList.remove('pulse');
+                  currentAnimationStep = 2;
+                  runWorkflowStep();
+                }
+              );
+            }, 800);
+            break;
+            
+          case 2: // Limit to Agent
+            limitNode.classList.add('pulse');
+            statusText.textContent = 'Applying Safety Rules';
+            animationTimeout = setTimeout(() => {
+              animateDot(
+                limitRect.left - containerRect.left,
+                limitRect.top + limitRect.height/2 + 20 - containerRect.top,
+                agentRect.right - containerRect.left,
+                agentRect.top + agentRect.height/2 + 20 - containerRect.top,
+                1200,
+                () => {
+                  limitNode.classList.remove('pulse');
+                  currentAnimationStep = 3;
+                  runWorkflowStep();
+                }
+              );
+            }, 800);
+            break;
+            
+          case 3: // Agent to Task
+            agentNode.classList.add('pulse');
+            statusText.textContent = 'Sending Response';
+            animationTimeout = setTimeout(() => {
+              animateDot(
+                agentRect.left - containerRect.left,
+                agentRect.top + agentRect.height/2 + 20 - containerRect.top,
+                taskRect.right - containerRect.left,
+                taskRect.top + taskRect.height/2 + 20 - containerRect.top,
+                1200,
+                () => {
+                  agentNode.classList.remove('pulse');
+                  animationTimeout = setTimeout(() => {
+                    currentAnimationStep = 0;
+                    statusText.textContent = 'System Active';
+                    runWorkflowStep();
+                  }, 1000);
+                }
+              );
+            }, 800);
+            break;
+        }
       }
       
-      runAnimationStep() {
-        if (!this.animationRunning) return;
-        
-        const containerRect = this.diagramContainer.getBoundingClientRect();
-        const taskRect = this.taskNode.getBoundingClientRect();
-        const agentRect = this.agentNode.getBoundingClientRect();
-        const limitRect = this.limitNode.getBoundingClientRect();
-        
-        const animationSteps = [
-          {
-            node: this.taskNode,
-            startX: taskRect.right - containerRect.left,
-            startY: taskRect.top + taskRect.height/2 - containerRect.top,
-            endX: agentRect.left - containerRect.left,
-            endY: agentRect.top + agentRect.height/2 - containerRect.top,
-            nextStep: 1
-          },
-          {
-            node: this.agentNode,
-            startX: agentRect.right - containerRect.left,
-            startY: agentRect.top + agentRect.height/2 - containerRect.top,
-            endX: limitRect.left - containerRect.left,
-            endY: limitRect.top + limitRect.height/2 - containerRect.top,
-            nextStep: 2
-          },
-          {
-            node: this.limitNode,
-            startX: limitRect.left - containerRect.left,
-            startY: limitRect.top + limitRect.height/2 + 20 - containerRect.top,
-            endX: agentRect.right - containerRect.left,
-            endY: agentRect.top + agentRect.height/2 + 20 - containerRect.top,
-            nextStep: 3
-          },
-          {
-            node: this.agentNode,
-            startX: agentRect.left - containerRect.left,
-            startY: agentRect.top + agentRect.height/2 + 20 - containerRect.top,
-            endX: taskRect.right - containerRect.left,
-            endY: taskRect.top + taskRect.height/2 + 20 - containerRect.top,
-            nextStep: 0,
-            delayAfter: 1000
-          }
-        ];
-        
-        const step = animationSteps[this.currentAnimationStep];
-        step.node.classList.add('pulse');
-        
-        this.animationTimeout = setTimeout(() => {
-          this.animateDot(
-            step.startX,
-            step.startY,
-            step.endX,
-            step.endY,
-            1200,
-            () => {
-              step.node.classList.remove('pulse');
-              this.currentAnimationStep = step.nextStep;
-              
-              if (step.delayAfter) {
-                this.animationTimeout = setTimeout(() => this.runAnimationStep(), step.delayAfter);
-              } else {
-                this.runAnimationStep();
-              }
-            }
-          );
-        }, 800);
-      }
-      
-      animateDot(startX, startY, endX, endY, duration, callback) {
+      // Animate a dot along a path
+      function animateDot(startX, startY, endX, endY, duration, callback) {
         const dot = document.createElement('div');
         dot.className = 'dot';
-        this.diagramContainer.appendChild(dot);
-        this.currentDots.push(dot);
+        diagramContainer.appendChild(dot);
+        currentDots.push(dot);
         
         dot.style.left = `${startX}px`;
         dot.style.top = `${startY}px`;
         
         // Create trail effect
         const trailInterval = setInterval(() => {
-          if (!this.animationRunning) {
-            clearInterval(trailInterval);
-            return;
-          }
-          
           const trailDot = document.createElement('div');
           trailDot.className = 'dot';
-          trailDot.style.width = '5px';
-          trailDot.style.height = '5px';
-          trailDot.style.opacity = '0.6';
+          trailDot.style.width = '6px';
+          trailDot.style.height = '6px';
+          trailDot.style.opacity = '0.5';
           trailDot.style.left = dot.style.left;
           trailDot.style.top = dot.style.top;
-          this.diagramContainer.appendChild(trailDot);
-          this.currentDots.push(trailDot);
+          diagramContainer.appendChild(trailDot);
+          currentDots.push(trailDot);
           
           // Fade out trail dots
           setTimeout(() => {
-            trailDot.style.transition = 'all 0.5s';
+            trailDot.style.transition = 'all 0.5s ease';
             trailDot.style.opacity = '0';
             trailDot.style.transform = 'scale(0.5)';
             setTimeout(() => {
               trailDot.remove();
-              this.currentDots = this.currentDots.filter(d => d !== trailDot);
+              currentDots = currentDots.filter(d => d !== trailDot);
             }, 500);
           }, 100);
         }, 100);
         
         const startTime = performance.now();
         
-        const animate = (time) => {
-          if (!this.animationRunning) {
-            clearInterval(trailInterval);
-            return;
-          }
-          
+        function animate(time) {
           const elapsed = time - startTime;
           const progress = Math.min(elapsed / duration, 1);
           
-          const currentX = startX + (endX - startX) * progress;
-          const currentY = startY + (endY - startY) * progress;
+          // Use easing for more natural movement
+          const easedProgress = easeInOutQuad(progress);
+          
+          const currentX = startX + (endX - startX) * easedProgress;
+          const currentY = startY + (endY - startY) * easedProgress;
           
           dot.style.left = `${currentX}px`;
           dot.style.top = `${currentY}px`;
           
+          // Add slight scale effect
+          if (progress < 0.5) {
+            dot.style.transform = `translate(-50%, -50%) scale(${1 + progress})`;
+          } else {
+            dot.style.transform = `translate(-50%, -50%) scale(${2 - progress})`;
+          }
+          
           if (progress < 1) {
-            requestAnimationFrame(animate);
+            animationFrameId = requestAnimationFrame(animate);
           } else {
             clearInterval(trailInterval);
-            dot.style.transition = 'all 0.5s';
+            dot.style.transition = 'all 0.3s ease';
             dot.style.opacity = '0';
-            dot.style.transform = 'scale(1.5)';
+            dot.style.transform = 'translate(-50%, -50%) scale(1.5)';
             setTimeout(() => {
               dot.remove();
-              this.currentDots = this.currentDots.filter(d => d !== dot);
+              currentDots = currentDots.filter(d => d !== dot);
               if (callback) callback();
-            }, 500);
+            }, 300);
           }
-        };
+        }
         
-        requestAnimationFrame(animate);
+        animationFrameId = requestAnimationFrame(animate);
       }
-    }
-    
-    // Initialize the diagram when DOM is loaded
-    document.addEventListener('DOMContentLoaded', () => new DiagramAnimator());
+      
+      // Easing function for dot animation
+      function easeInOutQuad(t) {
+        return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+      }
+      
+      // Initialize the diagram
+      init();
+    });
   </script>
 </body>
 </html>

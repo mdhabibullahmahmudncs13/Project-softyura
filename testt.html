@@ -3,18 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Professional AI Task Flow Diagram</title>
+  <title>AI Task Flow Visualization</title>
   <style>
     :root {
-      --primary-color: #6200ea;
-      --secondary-color: #3700b3;
-      --accent-color: #bb86fc;
-      --background-dark: #121212;
-      --background-light: #1e1e1e;
-      --text-primary: #ffffff;
-      --text-secondary: rgba(255, 255, 255, 0.7);
-      --shadow-color: rgba(0, 0, 0, 0.5);
-      --node-border-radius: 12px;
+      --primary: #6366f1;
+      --primary-light: #818cf8;
+      --primary-dark: #4f46e5;
+      --secondary: #10b981;
+      --accent: #f59e0b;
+      --danger: #ef4444;
+      --dark: #1e293b;
+      --darker: #0f172a;
+      --light: #f8fafc;
+      --gray: #94a3b8;
+      --node-glow: rgba(99, 102, 241, 0.3);
+      --transition: all 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6);
     }
     
     * {
@@ -24,209 +27,171 @@
     }
     
     body {
-      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', Oxygen, Ubuntu, Cantarell, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background: linear-gradient(135deg, var(--background-dark), var(--background-light));
-      color: var(--text-primary);
+      background: radial-gradient(circle at center, var(--darker), var(--dark));
+      color: var(--light);
       overflow: hidden;
-      position: relative;
     }
     
-    .diagram-container {
+    .dashboard {
       position: relative;
-      width: 800px;
-      height: 500px;
-      background-color: rgba(18, 18, 18, 0.8);
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 15px 35px var(--shadow-color);
-      backdrop-filter: blur(10px);
+      width: 1000px;
+      height: 700px;
+      background: rgba(30, 41, 59, 0.8);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
       overflow: hidden;
     }
     
-    .diagram-container::before {
-      content: "";
+    .dashboard::before {
+      content: '';
       position: absolute;
       top: -50%;
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(98, 0, 234, 0.08) 0%, rgba(98, 0, 234, 0.03) 40%, transparent 70%);
-      z-index: 0;
+      background: radial-gradient(circle, var(--node-glow) 0%, transparent 70%);
+      animation: rotate 60s linear infinite;
+      z-index: -1;
     }
     
-    .title-container {
-      position: absolute;
-      top: 20px;
-      left: 0;
-      width: 100%;
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    .header {
       text-align: center;
-      z-index: 10;
+      margin-bottom: 40px;
     }
     
     .title {
-      font-size: 28px;
-      font-weight: 700;
-      background: linear-gradient(90deg, #bb86fc, #6200ea);
+      font-size: 36px;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--primary-light), var(--primary));
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 5px;
-      letter-spacing: 1px;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
     }
     
     .subtitle {
-      font-size: 14px;
-      color: var(--text-secondary);
-      font-weight: 400;
-      opacity: 0.8;
+      font-size: 16px;
+      color: var(--gray);
+      font-weight: 500;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
     }
     
-    .control-panel {
-      position: absolute;
-      bottom: 20px;
-      left: 0;
+    .workflow {
+      position: relative;
       width: 100%;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      z-index: 10;
-    }
-    
-    .control-btn {
-      background: rgba(98, 0, 234, 0.2);
-      border: 1px solid rgba(187, 134, 252, 0.3);
-      color: var(--accent-color);
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(5px);
-      outline: none;
-    }
-    
-    .control-btn:hover {
-      background: rgba(98, 0, 234, 0.4);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(98, 0, 234, 0.2);
-    }
-    
-    .control-btn:active {
-      transform: translateY(0);
-    }
-    
-    .control-btn.active {
-      background: rgba(98, 0, 234, 0.5);
-      color: white;
+      height: 500px;
     }
     
     .node {
       position: absolute;
-      border-radius: var(--node-border-radius);
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border-radius: 20px;
+      transition: var(--transition);
       cursor: pointer;
       text-align: center;
       font-weight: 600;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      z-index: 5;
+      z-index: 10;
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: column;
-      padding: 20px;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
     }
     
     .node:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
-    }
-    
-    .node::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      padding: 2px;
-      border-radius: var(--node-border-radius);
-      background: linear-gradient(45deg, var(--accent-color), transparent);
-      -webkit-mask: 
-        linear-gradient(#fff 0 0) content-box, 
-        linear-gradient(#fff 0 0);
-      mask: 
-        linear-gradient(#fff 0 0) content-box, 
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    .node:hover::before {
-      opacity: 1;
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      border-color: rgba(99, 102, 241, 0.5);
     }
     
     .node-icon {
-      margin-bottom: 8px;
-      font-size: 24px;
-      color: var(--accent-color);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      box-shadow: 0 5px 15px var(--node-glow);
+      color: white;
+      transition: var(--transition);
+    }
+    
+    .node:hover .node-icon {
+      transform: rotate(15deg) scale(1.1);
     }
     
     .node-label {
-      font-size: 16px;
-      letter-spacing: 0.5px;
+      font-size: 20px;
+      margin-bottom: 8px;
+      color: white;
+      transition: var(--transition);
     }
     
     .node-description {
-      font-size: 12px;
-      color: var(--text-secondary);
-      margin-top: 5px;
+      font-size: 14px;
+      color: var(--gray);
       max-width: 90%;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      height: 0;
+      overflow: hidden;
+      transition: var(--transition);
     }
     
     .node:hover .node-description {
       opacity: 1;
+      height: auto;
+      margin-top: 10px;
     }
     
     .task-node {
-      left: 60px;
-      top: 200px;
-      width: 140px;
-      height: 110px;
-      background: linear-gradient(135deg, rgba(98, 0, 234, 0.2), rgba(55, 0, 179, 0.2));
-      border: 1px solid rgba(98, 0, 234, 0.3);
+      left: 100px;
+      top: 250px;
+      width: 180px;
+      height: 160px;
     }
     
     .agent-node {
-      left: 330px;
-      top: 170px;
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(98, 0, 234, 0.3), rgba(55, 0, 179, 0.3));
-      border: 1px solid rgba(98, 0, 234, 0.4);
+      left: 400px;
+      top: 200px;
+      width: 200px;
+      height: 200px;
+      border-radius: 30px;
     }
     
     .limit-node {
-      right: 60px;
-      top: 200px;
-      width: 140px;
-      height: 110px;
-      background: linear-gradient(135deg, rgba(98, 0, 234, 0.2), rgba(55, 0, 179, 0.2));
-      border: 1px solid rgba(98, 0, 234, 0.3);
+      right: 100px;
+      top: 250px;
+      width: 180px;
+      height: 160px;
     }
     
     .connection {
       position: absolute;
       height: 3px;
       transform-origin: left center;
-      z-index: 2;
+      z-index: 5;
       pointer-events: none;
     }
     
@@ -236,7 +201,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(to right, var(--accent-color) 70%, transparent);
+      background: linear-gradient(to right, var(--primary), transparent);
       opacity: 0.7;
     }
     
@@ -247,171 +212,231 @@
       top: -4px;
       width: 0;
       height: 0;
-      border-left: 10px solid var(--accent-color);
+      border-left: 10px solid var(--primary);
       border-top: 5px solid transparent;
       border-bottom: 5px solid transparent;
-      filter: drop-shadow(0 0 2px rgba(187, 134, 252, 0.5));
+      filter: drop-shadow(0 0 5px var(--primary));
     }
     
     .connection-label {
       position: absolute;
-      font-size: 11px;
-      background-color: rgba(18, 18, 18, 0.8);
-      padding: 3px 8px;
-      border-radius: 10px;
-      white-space: nowrap;
-      color: var(--text-secondary);
+      font-size: 12px;
+      background: rgba(30, 41, 59, 0.9);
+      padding: 6px 14px;
+      border-radius: 20px;
+      color: var(--light);
       transform: translateY(-50%);
-      border: 1px solid rgba(187, 134, 252, 0.3);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      font-weight: 600;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(5px);
     }
     
     .dot {
       position: absolute;
-      width: 10px;
-      height: 10px;
-      background: var(--accent-color);
+      width: 14px;
+      height: 14px;
+      background: var(--primary);
       border-radius: 50%;
-      filter: drop-shadow(0 0 5px var(--accent-color));
-      z-index: 3;
+      filter: drop-shadow(0 0 10px var(--primary));
+      z-index: 10;
       pointer-events: none;
+      transform: translate(-50%, -50%);
+    }
+    
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); }
+      70% { box-shadow: 0 0 0 25px rgba(99, 102, 241, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+    }
+    
+    .status {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--gray);
+      z-index: 20;
+    }
+    
+    .status-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--secondary);
+      box-shadow: 0 0 10px var(--secondary);
+      animation: pulse 2s infinite;
+    }
+    
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
     }
     
     .particle {
       position: absolute;
-      width: 3px;
-      height: 3px;
-      background: rgba(187, 134, 252, 0.5);
+      background: rgba(255, 255, 255, 0.5);
       border-radius: 50%;
       pointer-events: none;
       z-index: 1;
     }
     
-    .pulse {
-      animation: pulse-animation 2s infinite;
-    }
-    
-    @keyframes pulse-animation {
-      0% {
-        box-shadow: 0 0 0 0 rgba(187, 134, 252, 0.7);
-      }
-      70% {
-        box-shadow: 0 0 0 15px rgba(187, 134, 252, 0);
-      }
-      100% {
-        box-shadow: 0 0 0 0 rgba(187, 134, 252, 0);
-      }
-    }
-    
     .tooltip {
       position: absolute;
-      background: rgba(18, 18, 18, 0.9);
-      border: 1px solid rgba(187, 134, 252, 0.3);
-      color: var(--text-primary);
-      padding: 10px 15px;
-      border-radius: 8px;
+      background: rgba(30, 41, 59, 0.95);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: var(--light);
+      padding: 20px;
+      border-radius: 16px;
       font-size: 14px;
-      max-width: 250px;
+      max-width: 300px;
       z-index: 100;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    }
-    
-    .tooltip.active {
-      opacity: 1;
+      transition: var(--transition);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
     }
     
     .tooltip-title {
-      font-weight: 600;
-      color: var(--accent-color);
-      margin-bottom: 5px;
+      font-weight: 700;
+      color: var(--primary-light);
+      margin-bottom: 10px;
+      font-size: 16px;
     }
     
-    @media (max-width: 900px) {
-      .diagram-container {
+    .tooltip-content {
+      color: var(--gray);
+      line-height: 1.6;
+    }
+    
+    @media (max-width: 1100px) {
+      .dashboard {
         width: 90%;
-        height: 450px;
+        height: 600px;
       }
     }
     
-    @media (max-width: 600px) {
-      .diagram-container {
-        height: 400px;
+    @media (max-width: 768px) {
+      .dashboard {
+        height: 500px;
+        padding: 30px;
+      }
+      
+      .title {
+        font-size: 28px;
+      }
+      
+      .subtitle {
+        font-size: 14px;
       }
       
       .task-node, .limit-node {
-        width: 100px;
+        width: 140px;
+        height: 140px;
+        left: 50px;
+      }
+      
+      .limit-node {
+        right: 50px;
       }
       
       .agent-node {
-        width: 120px;
-        height: 120px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 160px;
+        height: 160px;
+      }
+      
+      .node-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+      }
+      
+      .node-label {
+        font-size: 16px;
       }
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="diagram-container" id="diagramContainer">
-    <div class="title-container">
-      <h1 class="title">AI Task Flow Process</h1>
-      <p class="subtitle">Interactive visualization of AI task processing pipeline</p>
+  <div class="dashboard" id="dashboard">
+    <div class="particles" id="particles"></div>
+    
+    <div class="header">
+      <h1 class="title">AI Task Processing Flow</h1>
+      <p class="subtitle">Visualizing the intelligent workflow from request to response</p>
     </div>
     
-    <div class="node task-node" id="taskNode">
-      <div class="node-icon">⚙️</div>
-      <div class="node-label">Task Input</div>
-      <div class="node-description">The initial request or task submitted to the AI system</div>
+    <div class="status">
+      <div class="status-dot"></div>
+      <span id="statusText">System Active</span>
     </div>
     
-    <div class="node agent-node" id="agentNode">
-      <div class="node-icon">🤖</div>
-      <div class="node-label">AI Agent</div>
-      <div class="node-description">Processes and evaluates the task according to constraints</div>
-    </div>
-    
-    <div class="node limit-node" id="limitNode">
-      <div class="node-icon">🛡️</div>
-      <div class="node-label">Guardrails</div>
-      <div class="node-description">System constraints and safety parameters</div>
-    </div>
-    
-    <div class="connection" id="taskToAgent">
-      <div class="connection-path"></div>
-      <div class="connection-label" id="labelTaskToAgent">Task submission</div>
-    </div>
-    
-    <div class="connection" id="agentToLimit">
-      <div class="connection-path"></div>
-      <div class="connection-label" id="labelAgentToLimit">Safety check</div>
-    </div>
-    
-    <div class="connection" id="limitToAgent">
-      <div class="connection-path"></div>
-      <div class="connection-label" id="labelLimitToAgent">Feedback</div>
-    </div>
-    
-    <div class="connection" id="agentToTask">
-      <div class="connection-path"></div>
-      <div class="connection-label" id="labelAgentToTask">Response</div>
-    </div>
-    
-    <div class="tooltip" id="tooltip">
-      <div class="tooltip-title">Information</div>
-      <div class="tooltip-content">Hover over elements for details</div>
-    </div>
-    
-    <div class="control-panel">
-      <button class="control-btn active" id="playBtn">Play Animation</button>
-      <button class="control-btn" id="resetBtn">Reset</button>
-      <button class="control-btn" id="infoBtn">Information</button>
+    <div class="workflow">
+      <div class="node task-node" id="taskNode">
+        <div class="node-icon">📥</div>
+        <div class="node-label">Input Gateway</div>
+        <div class="node-description">Secure entry point for all API requests with initial validation</div>
+      </div>
+      
+      <div class="node agent-node" id="agentNode">
+        <div class="node-icon">⚡</div>
+        <div class="node-label">AI Engine</div>
+        <div class="node-description">Core processing with multiple specialized neural networks</div>
+      </div>
+      
+      <div class="node limit-node" id="limitNode">
+        <div class="node-icon">🛡️</div>
+        <div class="node-label">Safety Layer</div>
+        <div class="node-description">Content moderation and compliance verification</div>
+      </div>
+      
+      <div class="connection" id="taskToAgent">
+        <div class="connection-path"></div>
+        <div class="connection-label" id="labelTaskToAgent">Request</div>
+      </div>
+      
+      <div class="connection" id="agentToLimit">
+        <div class="connection-path"></div>
+        <div class="connection-label" id="labelAgentToLimit">Validation</div>
+      </div>
+      
+      <div class="connection" id="limitToAgent">
+        <div class="connection-path"></div>
+        <div class="connection-label" id="labelLimitToAgent">Approval</div>
+      </div>
+      
+      <div class="connection" id="agentToTask">
+        <div class="connection-path"></div>
+        <div class="connection-label" id="labelAgentToTask">Response</div>
+      </div>
+      
+      <div class="tooltip" id="tooltip">
+        <div class="tooltip-title">Component Details</div>
+        <div class="tooltip-content">Hover over any element to learn more about its function</div>
+      </div>
     </div>
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // DOM Elements
-      const diagramContainer = document.getElementById('diagramContainer');
+      const dashboard = document.getElementById('dashboard');
       const taskNode = document.getElementById('taskNode');
       const agentNode = document.getElementById('agentNode');
       const limitNode = document.getElementById('limitNode');
@@ -419,52 +444,54 @@
       const agentToLimit = document.getElementById('agentToLimit');
       const limitToAgent = document.getElementById('limitToAgent');
       const agentToTask = document.getElementById('agentToTask');
-      const labelTaskToAgent = document.getElementById('labelTaskToAgent');
-      const labelAgentToLimit = document.getElementById('labelAgentToLimit');
-      const labelLimitToAgent = document.getElementById('labelLimitToAgent');
-      const labelAgentToTask = document.getElementById('labelAgentToTask');
+      const statusText = document.getElementById('statusText');
       const tooltip = document.getElementById('tooltip');
-      const playBtn = document.getElementById('playBtn');
-      const resetBtn = document.getElementById('resetBtn');
-      const infoBtn = document.getElementById('infoBtn');
+      const particlesContainer = document.getElementById('particles');
       
       // Animation state
-      let animationRunning = true;
-      let currentAnimationStep = 0;
+      let currentStep = 0;
       let animationTimeout = null;
       let currentDots = [];
+      let animationFrameId = null;
       
-      // Initialize the diagram
+      // Initialize
       function init() {
         createParticles();
         drawConnections();
         setupEventListeners();
-        startAnimation();
+        startWorkflow();
         
-        // Handle window resize
-        window.addEventListener('resize', drawConnections);
+        window.addEventListener('resize', () => {
+          drawConnections();
+          positionConnectionLabels();
+        });
       }
       
-      // Create background particles
+      // Create floating particles
       function createParticles() {
-        // Remove existing particles
-        document.querySelectorAll('.particle').forEach(particle => particle.remove());
+        particlesContainer.innerHTML = '';
         
-        for (let i = 0; i < 30; i++) {
+        for (let i = 0; i < 50; i++) {
           const particle = document.createElement('div');
           particle.className = 'particle';
+          
+          const size = Math.random() * 3 + 1;
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          
           particle.style.left = `${Math.random() * 100}%`;
           particle.style.top = `${Math.random() * 100}%`;
-          particle.style.opacity = Math.random() * 0.5 + 0.2;
-          diagramContainer.appendChild(particle);
+          particle.style.opacity = Math.random() * 0.5 + 0.1;
+          particle.style.background = `rgba(99, 102, 241, ${Math.random() * 0.3 + 0.1})`;
           
+          particlesContainer.appendChild(particle);
           animateParticle(particle);
         }
       }
       
-      // Animate a background particle
+      // Animate individual particle
       function animateParticle(particle) {
-        const duration = Math.random() * 15000 + 10000;
+        const duration = Math.random() * 20000 + 10000;
         const startX = parseFloat(particle.style.left);
         const startY = parseFloat(particle.style.top);
         const endX = Math.random() * 100;
@@ -476,21 +503,28 @@
           const elapsed = time - startTime;
           const progress = (elapsed % duration) / duration;
           
-          const currentX = startX + (endX - startX) * progress;
-          const currentY = startY + (endY - startY) * progress;
+          const easedProgress = easeInOutCubic(progress);
+          
+          const currentX = startX + (endX - startX) * easedProgress;
+          const currentY = startY + (endY - startY) * easedProgress;
           
           particle.style.left = `${currentX}%`;
           particle.style.top = `${currentY}%`;
           
-          requestAnimationFrame(move);
+          // Random twinkle effect
+          if (Math.random() > 0.95) {
+            particle.style.opacity = Math.random() * 0.5 + 0.1;
+          }
+          
+          animationFrameId = requestAnimationFrame(move);
         }
         
-        requestAnimationFrame(move);
+        move(performance.now());
       }
       
-      // Draw connection lines between nodes
+      // Draw connections between nodes
       function drawConnections() {
-        const containerRect = diagramContainer.getBoundingClientRect();
+        const containerRect = dashboard.getBoundingClientRect();
         const taskRect = taskNode.getBoundingClientRect();
         const agentRect = agentNode.getBoundingClientRect();
         const limitRect = limitNode.getBoundingClientRect();
@@ -501,7 +535,7 @@
           taskRect.right - containerRect.left,
           taskRect.top + taskRect.height/2 - containerRect.top,
           agentRect.left - containerRect.left,
-          agentRect.top + agentRect.height/2 - 20 - containerRect.top
+          agentRect.top + agentRect.height/2 - containerRect.top
         );
         
         // Agent to Limit
@@ -531,7 +565,6 @@
           taskRect.top + taskRect.height/2 + 20 - containerRect.top
         );
         
-        // Position connection labels
         positionConnectionLabels();
       }
       
@@ -546,242 +579,169 @@
         connection.style.transform = `rotate(${angle}deg)`;
       }
       
-      // Position the labels for connections
+      // Position connection labels
       function positionConnectionLabels() {
-        const labelPositionTask = taskToAgent.getBoundingClientRect();
-        const labelPositionLimit = agentToLimit.getBoundingClientRect();
-        const labelPositionLimitAgent = limitToAgent.getBoundingClientRect();
-        const labelPositionAgentTask = agentToTask.getBoundingClientRect();
+        const labelTaskToAgent = document.getElementById('labelTaskToAgent');
+        const labelAgentToLimit = document.getElementById('labelAgentToLimit');
+        const labelLimitToAgent = document.getElementById('labelLimitToAgent');
+        const labelAgentToTask = document.getElementById('labelAgentToTask');
         
-        // Position Task to Agent label
-        labelTaskToAgent.style.left = '50%';
-        labelTaskToAgent.style.top = '-12px';
-        labelTaskToAgent.style.transform = 'translate(-50%, -50%)';
+        labelTaskToAgent.style.left = `${taskToAgent.getBoundingClientRect().width * 0.4}px`;
+        labelTaskToAgent.style.top = `-12px`;
         
-        // Position Agent to Limit label
-        labelAgentToLimit.style.left = '50%';
-        labelAgentToLimit.style.top = '-12px';
-        labelAgentToLimit.style.transform = 'translate(-50%, -50%)';
+        labelAgentToLimit.style.left = `${agentToLimit.getBoundingClientRect().width * 0.4}px`;
+        labelAgentToLimit.style.top = `-12px`;
         
-        // Position Limit to Agent label
-        labelLimitToAgent.style.left = '50%';
-        labelLimitToAgent.style.top = '-12px';
-        labelLimitToAgent.style.transform = 'translate(-50%, -50%)';
+        labelLimitToAgent.style.left = `${limitToAgent.getBoundingClientRect().width * 0.4}px`;
+        labelLimitToAgent.style.top = `-12px`;
         
-        // Position Agent to Task label
-        labelAgentToTask.style.left = '50%';
-        labelAgentToTask.style.top = '-12px';
-        labelAgentToTask.style.transform = 'translate(-50%, -50%)';
+        labelAgentToTask.style.left = `${agentToTask.getBoundingClientRect().width * 0.4}px`;
+        labelAgentToTask.style.top = `-12px`;
       }
       
-      // Set up event listeners
+      // Setup event listeners
       function setupEventListeners() {
-        // Node hover tooltips
         const nodes = [taskNode, agentNode, limitNode];
+        
         nodes.forEach(node => {
           node.addEventListener('mouseenter', (e) => {
             const rect = node.getBoundingClientRect();
-            const containerRect = diagramContainer.getBoundingClientRect();
+            const containerRect = dashboard.getBoundingClientRect();
             
-            let tooltipTitle = "";
-            let tooltipContent = "";
+            let title, content;
             
             if (node === taskNode) {
-              tooltipTitle = "Task Input";
-              tooltipContent = "The system receives an initial request that needs processing. This could be a question, command, or data for analysis.";
+              title = "Input Gateway";
+              content = "The secure entry point for all API requests. Handles authentication, rate limiting, and initial payload validation before forwarding to the AI engine.";
             } else if (node === agentNode) {
-              tooltipTitle = "AI Agent";
-              tooltipContent = "The core intelligence that processes the task, applying various algorithms and models to generate an appropriate response.";
-            } else if (node === limitNode) {
-              tooltipTitle = "Safety Guardrails";
-              tooltipContent = "A system of rules and boundaries that ensure AI outputs are safe, ethical, and appropriate according to defined parameters.";
+              title = "AI Engine";
+              content = "The core processing unit with multiple specialized neural networks. Dynamically routes requests to appropriate models and handles response generation with caching and fallback mechanisms.";
+            } else {
+              title = "Safety Layer";
+              content = "Ensures all outputs comply with organizational policies and regulatory requirements. Performs content moderation, ethical constraint validation, and data privacy checks.";
             }
             
-            tooltip.querySelector('.tooltip-title').textContent = tooltipTitle;
-            tooltip.querySelector('.tooltip-content').textContent = tooltipContent;
+            tooltip.querySelector('.tooltip-title').textContent = title;
+            tooltip.querySelector('.tooltip-content').textContent = content;
             
             tooltip.style.left = `${rect.left - containerRect.left + rect.width/2}px`;
             tooltip.style.top = `${rect.top - containerRect.top - 10}px`;
             tooltip.style.transform = 'translate(-50%, -100%)';
             tooltip.classList.add('active');
+            
+            node.style.borderColor = 'rgba(99, 102, 241, 0.5)';
+            node.style.boxShadow = '0 0 0 2px rgba(99, 102, 241, 0.3)';
           });
           
           node.addEventListener('mouseleave', () => {
             tooltip.classList.remove('active');
+            node.style.borderColor = '';
+            node.style.boxShadow = '';
           });
           
-          // Node click effect
           node.addEventListener('click', () => {
             nodes.forEach(n => n.classList.remove('pulse'));
             node.classList.add('pulse');
             setTimeout(() => node.classList.remove('pulse'), 2000);
+            
+            statusText.textContent = `Accessing ${node.querySelector('.node-label').textContent}`;
           });
         });
-        
-        // Control buttons
-        playBtn.addEventListener('click', toggleAnimation);
-        resetBtn.addEventListener('click', resetAnimation);
-        infoBtn.addEventListener('click', showInformation);
       }
       
-      // Show information tooltip
-      function showInformation() {
-        tooltip.querySelector('.tooltip-title').textContent = "AI Task Flow";
-        tooltip.querySelector('.tooltip-content').textContent = 
-          "This diagram illustrates how AI processes tasks through a system of checks and balances. Click on any node to highlight it, or use the controls to manage the animation.";
-        
-        const containerRect = diagramContainer.getBoundingClientRect();
-        tooltip.style.left = `${containerRect.width / 2}px`;
-        tooltip.style.top = `${containerRect.height / 2}px`;
-        tooltip.style.transform = 'translate(-50%, -50%)';
-        tooltip.classList.add('active');
-        
-        setTimeout(() => {
-          tooltip.classList.remove('active');
-        }, 5000);
+      // Start automated workflow
+      function startWorkflow() {
+        runWorkflowStep();
       }
       
-      // Toggle animation play/pause
-      function toggleAnimation() {
-        animationRunning = !animationRunning;
-        playBtn.textContent = animationRunning ? "Pause Animation" : "Play Animation";
-        playBtn.classList.toggle('active');
-        
-        if (animationRunning) {
-          startAnimation();
-        } else {
-          clearTimeout(animationTimeout);
-          // Remove all active dots
-          currentDots.forEach(dot => dot.remove());
-          currentDots = [];
-        }
-      }
-      
-      // Reset animation to beginning
-      function resetAnimation() {
-        // Clear current animation
-        clearTimeout(animationTimeout);
-        currentDots.forEach(dot => dot.remove());
-        currentDots = [];
-        
-        // Reset nodes
-        const nodes = [taskNode, agentNode, limitNode];
-        nodes.forEach(node => node.classList.remove('pulse'));
-        
-        // Reset animation state
-        currentAnimationStep = 0;
-        
-        // Restart if animation was running
-        if (animationRunning) {
-          startAnimation();
-        }
-      }
-      
-      // Start animation sequence
-      function startAnimation() {
-        if (!animationRunning) return;
-        
-        // Clear any active dots
-        currentDots.forEach(dot => dot.remove());
-        currentDots = [];
-        
-        // Reset all node highlights
-        [taskNode, agentNode, limitNode].forEach(node => node.classList.remove('pulse'));
-        
-        runAnimationStep();
-      }
-      
-      // Run a single step of the animation
-      function runAnimationStep() {
-        if (!animationRunning) return;
-        
-        const containerRect = diagramContainer.getBoundingClientRect();
+      // Run workflow steps
+      function runWorkflowStep() {
+        const containerRect = dashboard.getBoundingClientRect();
         const taskRect = taskNode.getBoundingClientRect();
         const agentRect = agentNode.getBoundingClientRect();
         const limitRect = limitNode.getBoundingClientRect();
         
-        switch (currentAnimationStep) {
+        [taskNode, agentNode, limitNode].forEach(node => node.classList.remove('pulse'));
+        
+        switch(currentStep) {
           case 0: // Task to Agent
             taskNode.classList.add('pulse');
-            animationTimeout = setTimeout(() => {
-              animateDot(
-                taskRect.right - containerRect.left,
-                taskRect.top + taskRect.height/2 - containerRect.top,
-                agentRect.left - containerRect.left,
-                agentRect.top + agentRect.height/2 - containerRect.top,
-                1200,
-                () => {
-                  taskNode.classList.remove('pulse');
-                  currentAnimationStep = 1;
-                  runAnimationStep();
-                }
-              );
-            }, 800);
+            statusText.textContent = 'Processing Request';
+            animateDot(
+              taskRect.right - containerRect.left,
+              taskRect.top + taskRect.height/2 - containerRect.top,
+              agentRect.left - containerRect.left,
+              agentRect.top + agentRect.height/2 - containerRect.top,
+              1200,
+              () => {
+                taskNode.classList.remove('pulse');
+                currentStep = 1;
+                runWorkflowStep();
+              }
+            );
             break;
             
           case 1: // Agent to Limit
             agentNode.classList.add('pulse');
-            animationTimeout = setTimeout(() => {
-              animateDot(
-                agentRect.right - containerRect.left,
-                agentRect.top + agentRect.height/2 - containerRect.top,
-                limitRect.left - containerRect.left,
-                limitRect.top + limitRect.height/2 - containerRect.top,
-                1200,
-                () => {
-                  agentNode.classList.remove('pulse');
-                  currentAnimationStep = 2;
-                  runAnimationStep();
-                }
-              );
-            }, 800);
+            statusText.textContent = 'Validating Content';
+            animateDot(
+              agentRect.right - containerRect.left,
+              agentRect.top + agentRect.height/2 - containerRect.top,
+              limitRect.left - containerRect.left,
+              limitRect.top + limitRect.height/2 - containerRect.top,
+              1200,
+              () => {
+                agentNode.classList.remove('pulse');
+                currentStep = 2;
+                runWorkflowStep();
+              }
+            );
             break;
             
           case 2: // Limit to Agent
             limitNode.classList.add('pulse');
-            animationTimeout = setTimeout(() => {
-              animateDot(
-                limitRect.left - containerRect.left,
-                limitRect.top + limitRect.height/2 + 20 - containerRect.top,
-                agentRect.right - containerRect.left,
-                agentRect.top + agentRect.height/2 + 20 - containerRect.top,
-                1200,
-                () => {
-                  limitNode.classList.remove('pulse');
-                  currentAnimationStep = 3;
-                  runAnimationStep();
-                }
-              );
-            }, 800);
+            statusText.textContent = 'Applying Safety Rules';
+            animateDot(
+              limitRect.left - containerRect.left,
+              limitRect.top + limitRect.height/2 + 20 - containerRect.top,
+              agentRect.right - containerRect.left,
+              agentRect.top + agentRect.height/2 + 20 - containerRect.top,
+              1200,
+              () => {
+                limitNode.classList.remove('pulse');
+                currentStep = 3;
+                runWorkflowStep();
+              }
+            );
             break;
             
           case 3: // Agent to Task
             agentNode.classList.add('pulse');
-            animationTimeout = setTimeout(() => {
-              animateDot(
-                agentRect.left - containerRect.left,
-                agentRect.top + agentRect.height/2 + 20 - containerRect.top,
-                taskRect.right - containerRect.left,
-                taskRect.top + taskRect.height/2 + 20 - containerRect.top,
-                1200,
-                () => {
-                  agentNode.classList.remove('pulse');
-                  animationTimeout = setTimeout(() => {
-                    currentAnimationStep = 0;
-                    runAnimationStep();
-                  }, 1000);
-                }
-              );
-            }, 800);
+            statusText.textContent = 'Sending Response';
+            animateDot(
+              agentRect.left - containerRect.left,
+              agentRect.top + agentRect.height/2 + 20 - containerRect.top,
+              taskRect.right - containerRect.left,
+              taskRect.top + taskRect.height/2 + 20 - containerRect.top,
+              1200,
+              () => {
+                agentNode.classList.remove('pulse');
+                setTimeout(() => {
+                  currentStep = 0;
+                  statusText.textContent = 'System Active';
+                  runWorkflowStep();
+                }, 1000);
+              }
+            );
             break;
         }
       }
       
-      // Animate a dot along a path
+      // Animate dot along path
       function animateDot(startX, startY, endX, endY, duration, callback) {
         const dot = document.createElement('div');
         dot.className = 'dot';
-        diagramContainer.appendChild(dot);
+        dashboard.appendChild(dot);
         currentDots.push(dot);
         
         dot.style.left = `${startX}px`;
@@ -789,24 +749,18 @@
         
         // Create trail effect
         const trailInterval = setInterval(() => {
-          if (!animationRunning) {
-            clearInterval(trailInterval);
-            return;
-          }
-          
           const trailDot = document.createElement('div');
           trailDot.className = 'dot';
-          trailDot.style.width = '5px';
-          trailDot.style.height = '5px';
-          trailDot.style.opacity = '0.6';
+          trailDot.style.width = '8px';
+          trailDot.style.height = '8px';
+          trailDot.style.opacity = '0.5';
           trailDot.style.left = dot.style.left;
           trailDot.style.top = dot.style.top;
-          diagramContainer.appendChild(trailDot);
+          dashboard.appendChild(trailDot);
           currentDots.push(trailDot);
           
-          // Fade out trail dots
           setTimeout(() => {
-            trailDot.style.transition = 'all 0.5s';
+            trailDot.style.transition = 'all 0.5s ease';
             trailDot.style.opacity = '0';
             trailDot.style.transform = 'scale(0.5)';
             setTimeout(() => {
@@ -819,39 +773,51 @@
         const startTime = performance.now();
         
         function animate(time) {
-          if (!animationRunning) {
-            clearInterval(trailInterval);
-            return;
-          }
-          
           const elapsed = time - startTime;
           const progress = Math.min(elapsed / duration, 1);
           
-          const currentX = startX + (endX - startX) * progress;
-          const currentY = startY + (endY - startY) * progress;
+          const easedProgress = easeInOutQuad(progress);
+          
+          const currentX = startX + (endX - startX) * easedProgress;
+          const currentY = startY + (endY - startY) * easedProgress;
           
           dot.style.left = `${currentX}px`;
           dot.style.top = `${currentY}px`;
           
+          if (progress < 0.5) {
+            dot.style.transform = `translate(-50%, -50%) scale(${1 + progress})`;
+          } else {
+            dot.style.transform = `translate(-50%, -50%) scale(${2 - progress})`;
+          }
+          
           if (progress < 1) {
-            requestAnimationFrame(animate);
+            animationFrameId = requestAnimationFrame(animate);
           } else {
             clearInterval(trailInterval);
-            dot.style.transition = 'all 0.5s';
+            dot.style.transition = 'all 0.3s ease';
             dot.style.opacity = '0';
-            dot.style.transform = 'scale(1.5)';
+            dot.style.transform = 'translate(-50%, -50%) scale(1.5)';
             setTimeout(() => {
               dot.remove();
               currentDots = currentDots.filter(d => d !== dot);
               if (callback) callback();
-            }, 500);
+            }, 300);
           }
         }
         
-        requestAnimationFrame(animate);
+        animationFrameId = requestAnimationFrame(animate);
       }
       
-      // Initialize the diagram
+      // Easing functions
+      function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      }
+      
+      function easeInOutQuad(t) {
+        return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+      }
+      
+      // Initialize
       init();
     });
   </script>
