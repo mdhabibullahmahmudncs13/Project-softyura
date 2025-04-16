@@ -1356,22 +1356,240 @@
                     <a href="#portfolio" class="secondary-button">View Our Work</a>
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="floating-cube">
-                  
-                    
-                </div>
-                <div class="floating-cube">
-                  
-                </div>
-                <div class="floating-cube">
-                   
-                </div>
-
-              
-                <div class="floating-sphere"></div>
-            </div>
+        <div class="hero-image">
+           
+           <!-- AI Workflow Process - Start -->
+<div class="ai-workflow-container">
+    <h2 class="ai-workflow-title">AI Task Processing Workflow</h2>
+    
+    <div class="ai-workflow">
+        <div class="ai-workflow-step" id="aiStep1">
+            <div class="ai-workflow-icon">📋</div>
+            <span>Task Assigned</span>
+            <div class="ai-arrow">→</div>
         </div>
+        
+        <div class="ai-workflow-step" id="aiStep2">
+            <div class="ai-workflow-icon">🤖</div>
+            <span>AI Agent Processing</span>
+            <div class="ai-arrow">→</div>
+        </div>
+        
+        <div class="ai-workflow-step" id="aiStep3">
+            <div class="ai-workflow-icon">🧠</div>
+            <span>LLM Analysis</span>
+            <div class="ai-arrow">→</div>
+        </div>
+        
+        <div class="ai-workflow-step" id="aiStep4">
+            <div class="ai-workflow-icon">⚙️</div>
+            <span>AI Agent Refinement</span>
+            <div class="ai-arrow">→</div>
+        </div>
+        
+        <div class="ai-workflow-step" id="aiStep5">
+            <div class="ai-workflow-icon">✅</div>
+            <span>Task Completed</span>
+        </div>
+    </div>
+    
+    <div class="ai-progress-bar">
+        <div class="ai-progress" id="ai-workflow-progress"></div>
+    </div>
+</div>
+
+<style>
+    /* AI Workflow Styles - using class prefixes to avoid conflicts */
+    .ai-workflow-container {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        max-width: 1000px;
+        margin: 30px auto;
+        padding: 20px;
+    }
+    
+    .ai-workflow-title {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 1.8rem;
+        background: linear-gradient(90deg, #6256f5, #a742f5);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 200% 100%;
+        animation: ai-gradientShift 8s infinite linear;
+    }
+    
+    .ai-workflow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        font-size: 1rem;
+        color: #ffffff;
+    }
+    
+    .ai-workflow-step {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(98, 86, 245, 0.2);
+        padding: 12px 18px;
+        border-radius: 24px;
+        box-shadow: 0 0 15px rgba(98, 86, 245, 0.2);
+        transition: all 0.5s ease;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .ai-workflow-step:hover {
+        background: rgba(98, 86, 245, 0.4);
+        transform: translateY(-5px) scale(1.03);
+        box-shadow: 0 10px 25px rgba(98, 86, 245, 0.3);
+    }
+    
+    .ai-workflow-step.active {
+        background: rgba(98, 86, 245, 0.6);
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 12px 30px rgba(98, 86, 245, 0.4);
+    }
+    
+    .ai-workflow-step::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -150%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: all 0.8s ease;
+    }
+    
+    .ai-workflow-step:hover::before {
+        left: 150%;
+    }
+    
+    .ai-workflow-step span {
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+    
+    .ai-workflow-icon {
+        font-size: 1.6rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 30px;
+    }
+    
+    .ai-arrow {
+        margin-left: 8px;
+        font-size: 1.2rem;
+        color: #6256f5;
+        animation: ai-pulse 1.5s infinite;
+    }
+    
+    .ai-progress-bar {
+        height: 6px;
+        width: 100%;
+        background: rgba(98, 86, 245, 0.1);
+        border-radius: 10px;
+        margin: 25px 0 10px;
+        overflow: hidden;
+    }
+    
+    .ai-progress {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #6256f5, #a742f5);
+        border-radius: 10px;
+        transition: width 0.5s ease;
+    }
+    
+    @keyframes ai-pulse {
+        0% { opacity: 0.5; transform: scale(0.85); }
+        50% { opacity: 1; transform: scale(1.15); }
+        100% { opacity: 0.5; transform: scale(0.85); }
+    }
+    
+    @keyframes ai-gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .ai-workflow {
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .ai-workflow-step {
+            width: 100%;
+            justify-content: space-between;
+        }
+        
+        .ai-arrow {
+            transform: rotate(90deg);
+        }
+    }
+</style>
+
+<script>
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Interactive workflow animation
+        const aiWorkflowSteps = document.querySelectorAll('.ai-workflow-step');
+        const aiProgressBar = document.getElementById('ai-workflow-progress');
+        let aiCurrentStep = 0;
+        
+        function aiHighlightStep() {
+            // Remove active class from all steps
+            aiWorkflowSteps.forEach(step => step.classList.remove('active'));
+            
+            // Add active class to current step
+            aiWorkflowSteps[aiCurrentStep].classList.add('active');
+            
+            // Update progress bar
+            const progressPercentage = ((aiCurrentStep + 1) / aiWorkflowSteps.length) * 100;
+            aiProgressBar.style.width = `${progressPercentage}%`;
+            
+            // Move to next step or reset
+            aiCurrentStep = (aiCurrentStep + 1) % aiWorkflowSteps.length;
+        }
+        
+        // Start workflow animation
+        aiHighlightStep();
+        const aiInterval = setInterval(aiHighlightStep, 2500);
+        
+        // Add click functionality to steps
+        aiWorkflowSteps.forEach((step, index) => {
+            step.addEventListener('click', () => {
+                // Clear the automatic interval when user interacts
+                clearInterval(aiInterval);
+                
+                // Update steps
+                aiWorkflowSteps.forEach(s => s.classList.remove('active'));
+                step.classList.add('active');
+                
+                // Update progress based on clicked step
+                const progressPercentage = ((index + 1) / aiWorkflowSteps.length) * 100;
+                aiProgressBar.style.width = `${progressPercentage}%`;
+                
+                // Set next step
+                aiCurrentStep = (index + 1) % aiWorkflowSteps.length;
+                
+                // Restart the interval
+                setTimeout(() => {
+                    aiInterval = setInterval(aiHighlightStep, 2500);
+                }, 5000);
+            });
+        });
+    });
+</script>
+<!-- AI Workflow Process - End -->
     </section>
 
     <!-- Services Section -->
