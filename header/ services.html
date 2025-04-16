@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | SoftYura - AI & Development Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0a0a0c;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Particle Background */
+        .particles-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        /* Navigation */
+        header {
+            background-color: rgba(10, 10, 12, 0.85);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(138, 43, 226, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        header.scrolled {
+            padding: 5px 0;
+            background-color: rgba(10, 10, 12, 0.95);
+            box-shadow: 0 5px 25px rgba(138, 43, 226, 0.4);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: rgba(167, 66, 245, 0.3);
+            border-radius: 50%;
+            filter: blur(15px);
+            z-index: -1;
+        }
+
+        .logo span {
+            background: linear-gradient(90deg, #a742f5, #c176ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(167, 66, 245, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+            position: relative;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: #a742f5;
+            text-shadow: 0 0 8px rgba(167, 66, 245, 0.6);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, #a742f5, #c176ff);
+            box-shadow: 0 0 8px rgba(167, 66, 245, 0.8);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section - Services Version */
+        .services-hero {
+            background: linear-gradient(135deg, #0a0a0c 0%, #1a1a24 100%);
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .services-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle at center, rgba(167, 66, 245, 0.15) 0%, rgba(10, 10, 12, 0) 70%);
+            border-radius: 50%;
+            animation: pulse 8s infinite alternate;
+        }
+
+        .services-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.1) 0%, rgba(10, 10, 12, 0) 70%);
+            border-radius: 50%;
+            animation: float 15s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; transform: scale(0.9); }
+            100% { opacity: 0.7; transform: scale(1.1); }
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(50px, -30px); }
+            100% { transform: translate(-20px, 50px); }
+        }
+
+        .services-hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            width: 100%;
+        }
+
+        .services-hero h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+        }
+
+        .highlight {
+            background: linear-gradient(90deg, #a742f5, #c176ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(167, 66, 245, 0.2);
+            z-index: -1;
+            border-radius: 3px;
+        }
+
+        .services-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #cccccc;
+        }
+
+        /* Services Main Section */
+        .services-main {
+            padding: 100px 0;
+            background-color: #0c0c10;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-main::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle at center, rgba(167, 66, 245, 0.1) 0%, rgba(10, 10, 12, 0) 70%);
+            border-radius: 50%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #8a2be2 0%, #a742f5 100%);
+            border-radius: 3px;
+        }
+
+        .section-subtitle {
+            color: #cccccc;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.2rem;
+        }
+
+        /* Detailed Services */
+        .service-detail {
+            background-color: rgba(26, 26, 38, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 60px;
+            border: 1px solid rgba(42, 42, 60, 0.6);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .service-detail:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(167, 66, 245, 0.3);
+        }
+
+        .service-detail::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #8a2be2 0%, #a742f5 100%);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+
+        .service-detail::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.05) 0%, rgba(10, 10, 12, 0) 100%);
+            opacity: 0;
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+
+        .service-detail:hover::after {
+            opacity: 1;
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .service-icon {
+            font-size: 3.5rem;
+            margin-right: 30px;
+            position: relative;
+        }
+
+        .service-icon span {
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(135deg, #a742f5, #c176ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .service-icon::before {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(167, 66, 245, 0.1);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: blur(15px);
+        }
+
+        .service-title {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .service-subtitle {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+        }
+
+        .service-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .service-description {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .service-features {
+            margin-bottom: 30px;
+        }
+
+        .service-features h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .features-list {
+            list-style: none;
+        }
+
+        .features-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #a742f5;
+            font-weight: bold;
+        }
+
+        .service-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            height: 100%;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-detail:hover .service-image img {
+            transform: scale(1.05);
+        }
+
+        .service-cta {
+            display: inline-block;
+            background: linear-gradient(90deg, #8a2be2 0%, #a742f5 100%);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .service-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+
+        .service-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.6);
+        }
+
+        .service-cta:hover::before {
+            left: 100%;
+        }
+
+        /* Process Section */
+        .process {
+            padding: 100px 0;
+            background-color: #0a0a0c;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process::before {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.1) 0%, rgba(10, 10, 12, 0) 70%);
+            border-radius: 50%;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .process-step {
+            background-color: rgba(26, 26, 38, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(42, 42, 60, 0.6);
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(167, 66, 245, 0.3);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #8a2be2 0%, #a742f5 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0 auto 25px;
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
+        }
+
+        .process-step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .process-step p {
+            color: #b0b0b0;
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, rgba(26, 26, 38, 0.8) 0%, rgba(10, 10, 12, 0.9) 100%);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1200/600') center/cover no-repeat;
+            opacity: 0.1;
+            z-index: 0;
+            filter: blur(10px);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+        }
+
+        .cta p {
+            color: #cccccc;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(90deg, #8a2be2 0%, #a742f5 100%);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.6);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .secondary-button {
+            display: inline-block;
+            background: transparent;
+            color: white;
+            padding: 14px 34px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(167, 66, 245, 0.5);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.2);
+        }
+
+        .secondary-button:hover {
+            background: rgba(167, 66, 245, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #070709;
+            padding: 80px 0 30px;
+            position: relative;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #8a2be2 0%, #a742f5 100%);
+            border-radius: 3px;
+        }
+
+        .footer-about p {
+            color: #b0b0b0;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: #a742f5;
+            padding-left: 5px;
+        }
+
+        .footer-links a i {
+            font-size: 1.2rem;
+        }
+
+        .footer-contact p {
+            color: #b0b0b0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-contact p i {
+            color: #a742f5;
+            font-size: 1.2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(26, 26, 38, 0.6);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, #8a2be2 0%, #a742f5 100%);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.4);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(42, 42, 60, 0.6);
+            color: #777777;
+            font-size: 0.9rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #8a2be2 0%, #a742f5 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 999;
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.6);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .services-hero h1 {
+                font-size: 3.2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .service-content {
+                grid-template-columns: 1fr;
+            }
+
+            .service-image {
+                height: 400px;
+                order: -1;
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: rgba(10, 10, 12, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+                transition: all 0.5s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin-left: 0;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .services-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .services-hero p {
+                font-size: 1.1rem;
+            }
+
+            .service-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .service-icon {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .cta-button, .secondary-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .services-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .service-detail {
+                padding: 30px 20px;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Particle Background -->
+<div class="particles-bg" id="particles-js"></div>
+
+<!-- Header -->
+<header id="header">
+    <div class="container nav-container">
+        <a href="index.html" class="logo">Soft<span>Yura</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html" class="active">Services</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="mobile-toggle" id="mobileToggle">
+            <i>☰</i>
+        </button>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="services-hero">
+    <div class="container services-hero-content">
+        <h1>Our <span class="highlight">Services</span></h1>
+        <p>Discover how our comprehensive tech solutions can transform your business and give you a competitive edge in the digital landscape.</p>
+    </div>
+</section>
+
+<!-- Services Main Section -->
+<section class="services-main">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Comprehensive <span class="highlight">Solutions</span></h2>
+            <p class="section-subtitle">We offer a full range of technology services designed to meet your business needs and drive growth.</p>
+        </div>
+
+        <!-- AI Solutions -->
+        <div class="service-detail">
+            <div class="service-header">
+                <div class="service-icon"><span>🤖</span></div>
+                <div>
+                    <h2 class="service-title">AI Solutions</h2>
+                    <p class="service-subtitle">Harness the power of artificial intelligence to transform your business</p>
+                </div>
+            </div>
+
+            <div class="service-content">
+                <div>
+                    <p class="service-description">
+                        Our AI solutions leverage cutting-edge machine learning algorithms and neural networks to automate processes, gain insights from data, and enhance customer experiences. From predictive analytics to natural language processing, we build intelligent systems tailored to your specific needs.
+                    </p>
+
+                    <div class="service-features">
+                        <h4>Key Features</h4>
+                        <ul class="features-list">
+                            <li>Custom machine learning model development</li>
+                            <li>Natural language processing for chatbots and virtual assistants</li>
+                            <li>Computer vision for image and video analysis</li>
+                            <li>Predictive analytics and forecasting</li>
+                            <li>AI-powered recommendation engines</li>
+                            <li>Automated data processing and analysis</li>
+                        </ul>
+                    </div>
+
+                    <a href="#contact" class="service-cta">Get AI Solutions</a>
+                </div>
+
+                <div class="service-image">
+                    <img src="/api/placeholder/600/400" alt="AI Solutions">
+                </div>
+            </div>
+        </div>
+
+        <!-- App Development -->
+        <div class="service-detail">
+            <div class="service-header">
+                <div class="service-icon"><span>📱</span></div>
+                <div>
+                    <h2 class="service-title">App Development</h2>
+                    <p class="service-subtitle">Create engaging mobile experiences that users love</p>
+                </div>
+            </div>
+
+            <div class="service-content">
+                <div>
+                    <p class="service-description">
+                        We design and develop high-performance mobile applications for iOS and Android platforms. Our apps combine beautiful interfaces with seamless functionality to deliver exceptional user experiences that drive engagement and retention.
+                    </p>
+
+                    <div class="service-features">
+                        <h4>Key Features</h4>
+                        <ul class="features-list">
+                            <li>Native iOS and Android app development</li>
+                            <li>Cross-platform solutions with Flutter and React Native</li>
+                            <li>UI/UX design focused on usability and aesthetics</li>
+                            <li>Integration with backend systems and APIs</li>
+                            <li>Performance optimization and testing</li>
+                            <li>App store submission and maintenance</li>
+                        </ul>
+                    </div>
+
+                    <a href="#contact" class="service-cta">Build Your App</a>
+                </div>
+
+                <div class="service-image">
+                    <img src="/api/placeholder/600/400" alt="App Development">
+                </div>
+            </div>
+        </div>
+
+        <!-- Web Development -->
+        <div class="service-detail">
+            <div class="service-header">
+                <div class="service-icon"><span>💻</span></div>
+                <div>
+                    <h2 class="service-title">Web Development</h2>
+                    <p class="service-subtitle">Build powerful web applications that drive results</p>
+                </div>
+            </div>
+
+            <div class="service-content">
+                <div>
+                    <p class="service-description">
+                        From responsive websites to complex web applications, we create digital experiences that engage users and deliver business value. Our full-stack development expertise ensures your web solution is performant, secure, and scalable.
+                    </p>
+
+                    <div class="service-features">
+                        <h4>Key Features</h4>
+                        <ul class="features-list">
+                            <li>Custom website and web application development</li>
+                            <li>Responsive design for all devices</li>
+                            <li>Frontend development with React, Vue, and Angular</li>
+                            <li>Backend development with Node.js, Python, and PHP</li>
+                            <li>E-commerce solutions and payment integrations</li>
+                            <li>Content management systems and custom CMS</li>
+                        </ul>
+                    </div>
+
+                    <a href="#contact" class="service-cta">Develop Your Web Solution</a>
+                </div>
+
+                <div class="service-image">
+                    <img src="/api/placeholder/600/400" alt="Web Development">
+                </div>
+            </div>
+        </div>
+
+        <!-- UI/UX Design -->
+        <div class="service-detail">
+            <div class="service-header">
+                <div class="service-icon"><span>🎨</span></div>
+                <div>
+                    <h2 class="service-title">UI/UX Design</h2>
+                    <p class="service-subtitle">Create intuitive interfaces that delight users</p>
+                </div>
+            </div>
+
+            <div class="service-content">
+                <div>
+                    <p class="service-description">
+                        Our design process focuses on creating beautiful, user-friendly interfaces that enhance usability and drive engagement. We combine aesthetics with functionality to deliver digital products that users love to interact with.
+                    </p>
+
+                    <div class="service-features">
+                        <h4>Key Features</h4>
+                        <ul class="features-list">
+                            <li>User research and persona development</li>
+                            <li>Information architecture and wireframing</li>
+                            <li>Interactive prototyping and user testing</li>
+                            <li>Visual design and branding integration</li>
+                            <li>Accessibility and inclusive design</li>
+                            <li>Design systems and component libraries</li>
+                        </ul>
+                    </div>
+
+                    <a href="#contact" class="service-cta">Design Your Product</a>
+                </div>
+
+                <div class="service-image">
+                    <img src="/api/placeholder/600/400" alt="UI/UX Design">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Process Section -->
+<section class="process">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Our <span class="highlight">Process</span></h2>
+            <p class="section-subtitle">We follow a proven methodology to ensure successful project delivery and maximum value for your business.</p>
+        </div>
+
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>Discovery</h3>
+                <p>We start by understanding your business goals, target audience, and technical requirements through in-depth research and analysis.</p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>Planning</h3>
+                <p>We create a detailed project plan with milestones, deliverables, and timelines to ensure alignment with your objectives.</p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>Design</h3>
+                <p>Our designers create wireframes, prototypes, and visual designs that bring your vision to life while focusing on user experience.</p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>Development</h3>
+                <p>Our developers build your solution using best practices, clean code, and rigorous testing to ensure quality and performance.</p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">5</div>
+                <h3>Launch</h3>
+                <p>We deploy your solution, monitor performance, and provide training to ensure a smooth transition to your team.</p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">6</div>
+                <h3>Support</h3>
+                <p>We offer ongoing maintenance, updates, and enhancements to keep your solution running optimally.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta">
+    <div class="cta-content">
+        <h2>Ready to <span class="highlight">Transform</span> Your Business?</h2>
+        <p>Let's collaborate to create innovative solutions that drive your success in the digital world. Contact us today to discuss your project.</p>
+        <div class="cta-buttons">
+            <a href="contact.html" class="cta-button">Get in Touch</a>
+            <a href="portfolio.html" class="secondary-button">View Our Work</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-container">
+            <div class="footer-col footer-about">
+                <h3>SoftYura</h3>
+                <p>Transforming ideas into digital reality with cutting-edge AI, app development, and web development solutions.</p>
+                <div class="social-links">
+                    <a href="#"><i>fb</i></a>
+                    <a href="#"><i>tw</i></a>
+                    <a href="#"><i>ig</i></a>
+                    <a href="#"><i>li</i></a>
+                    <a href="#"><i>yt</i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i>→</i> AI Solutions</a></li>
+                    <li><a href="#"><i>→</i> App Development</a></li>
+                    <li><a href="#"><i>→</i> Web Development</a></li>
+                    <li><a href="#"><i>→</i> UI/UX Design</a></li>
+                    <li><a href="#"><i>→</i> Cybersecurity</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Company</h3>
+                <ul class="footer-links">
+                    <li><a href="about.html"><i>→</i> About Us</a></li>
+                    <li><a href="#"><i>→</i> Our Team</a></li>
+                    <li><a href="#"><i>→</i> Careers</a></li>
+                    <li><a href="#"><i>→</i> Blog</a></li>
+                    <li><a href="contact.html"><i>→</i> Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col footer-contact">
+                <h3>Contact Info</h3>
+                <p><i>✉️</i> info@softyura.com</p>
+                <p><i>📞</i> +1 (555) 123-4567</p>
+                <p><i>📍</i> 123 Tech Street, San Francisco</p>
+                <p><i>🕒</i> Mon-Fri: 9AM - 6PM</p>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2025 SoftYura. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top Button -->
+<a href="#" class="back-to-top" id="backToTop"><i>↑</i></a>
+
+<!-- JavaScript -->
+<script>
+    // Mobile Navigation Toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    mobileToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
+
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // Back to top button
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTop.classList.add('active');
+        } else {
+            backToTop.classList.remove('active');
+        }
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Initialize particles.js if you're using it
+    // particlesJS.load('particles-js', 'particles.json', function() {
+    //     console.log('Particles.js loaded');
+    // });
+</script>
+</body>
+</html>
