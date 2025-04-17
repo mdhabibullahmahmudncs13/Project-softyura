@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Portfolio | SoftYura - AI & Development Solutions</title>
+    <title>About Us | SoftYura - AI & Development Solutions</title>
     <style>
         * {
             margin: 0;
@@ -138,8 +138,8 @@
             cursor: pointer;
         }
 
-        /* Hero Section - Portfolio Version */
-        .portfolio-hero {
+        /* Hero Section - About Version */
+        .about-hero {
             background: linear-gradient(135deg, #0a0a0c 0%, #1a1a24 100%);
             height: 60vh;
             display: flex;
@@ -149,7 +149,7 @@
             padding-top: 80px;
         }
 
-        .portfolio-hero::before {
+        .about-hero::before {
             content: '';
             position: absolute;
             top: 0;
@@ -161,7 +161,7 @@
             animation: pulse 8s infinite alternate;
         }
 
-        .portfolio-hero::after {
+        .about-hero::after {
             content: '';
             position: absolute;
             bottom: -100px;
@@ -184,14 +184,14 @@
             100% { transform: translate(-20px, 50px); }
         }
 
-        .portfolio-hero-content {
+        .about-hero-content {
             position: relative;
             z-index: 1;
             text-align: center;
             width: 100%;
         }
 
-        .portfolio-hero h1 {
+        .about-hero h1 {
             font-size: 3.8rem;
             font-weight: 700;
             margin-bottom: 20px;
@@ -220,28 +220,28 @@
             border-radius: 3px;
         }
 
-        .portfolio-hero p {
+        .about-hero p {
             font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto 30px;
             color: #cccccc;
         }
 
-        /* Portfolio Main Section */
-        .portfolio-main {
+        /* About Company Section */
+        .about-company {
             padding: 100px 0;
-            background-color: #0a0a0c;
+            background-color: #0c0c10;
             position: relative;
             overflow: hidden;
         }
 
-        .portfolio-main::before {
+        .about-company::before {
             content: '';
             position: absolute;
-            bottom: -100px;
-            right: -100px;
-            width: 400px;
-            height: 400px;
+            top: -200px;
+            right: -200px;
+            width: 500px;
+            height: 500px;
             background: radial-gradient(circle at center, rgba(167, 66, 245, 0.1) 0%, rgba(10, 10, 12, 0) 70%);
             border-radius: 50%;
         }
@@ -279,150 +279,208 @@
             font-size: 1.2rem;
         }
 
-        /* Portfolio Filter */
-        .portfolio-filter {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 50px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .filter-btn {
-            background: transparent;
-            color: #cccccc;
-            border: 1px solid rgba(167, 66, 245, 0.3);
-            padding: 10px 25px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .filter-btn.active, .filter-btn:hover {
-            background: linear-gradient(90deg, rgba(138, 43, 226, 0.2) 0%, rgba(167, 66, 245, 0.2) 100%);
-            color: #ffffff;
-            border-color: rgba(167, 66, 245, 0.5);
-            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.2);
-        }
-
-        /* Portfolio Grid */
-        .portfolio-grid {
+        .about-content {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
         }
 
-        .portfolio-item {
+        .about-text h2 {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .about-text p {
+            color: #b0b0b0;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
             position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: all 0.5s ease;
-            height: 300px;
-            cursor: pointer;
         }
 
-        .portfolio-item img {
+        .about-image-main {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+            border: 3px solid rgba(42, 42, 60, 0.6);
             transition: all 0.5s ease;
         }
 
-        .portfolio-item:hover img {
-            transform: scale(1.1);
+        .about-image:hover .about-image-main {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            border-color: rgba(167, 66, 245, 0.3);
         }
 
-        .portfolio-item:hover {
+        .about-image::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            right: -30px;
+            bottom: -30px;
+            border: 2px solid rgba(167, 66, 245, 0.3);
+            border-radius: 20px;
+            z-index: 1;
+            transition: all 0.5s ease;
+        }
+
+        .about-image:hover::after {
+            top: 20px;
+            left: 20px;
+            border-color: rgba(167, 66, 245, 0.5);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .stat-item {
+            position: relative;
+            padding: 20px;
+            background-color: rgba(26, 26, 38, 0.4);
+            border-radius: 15px;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(42, 42, 60, 0.4);
+            text-align: center;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-8px);
+            background-color: rgba(26, 26, 38, 0.6);
+            border-color: rgba(167, 66, 245, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #a742f5, #c176ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-size: 1rem;
+            color: #cccccc;
+            margin-bottom: 0;
+        }
+
+        /* Values Section */
+        .values {
+            padding: 100px 0;
+            background-color: #0a0a0c;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .values::before {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.1) 0%, rgba(10, 10, 12, 0) 70%);
+            border-radius: 50%;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .value-card {
+            background-color: rgba(26, 26, 38, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            border: 1px solid rgba(42, 42, 60, 0.6);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .value-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(167, 66, 245, 0.3);
         }
 
-        .portfolio-overlay {
+        .value-card::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(10, 10, 12, 0.9) 0%, rgba(10, 10, 12, 0.4) 100%);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 30px;
-            opacity: 0;
-            transition: all 0.4s ease;
-        }
-
-        .portfolio-item:hover .portfolio-overlay {
-            opacity: 1;
-        }
-
-        .portfolio-overlay h3 {
-            font-size: 1.6rem;
-            margin-bottom: 10px;
-        }
-
-        .portfolio-overlay p {
-            color: #cccccc;
-            margin-bottom: 15px;
-        }
-
-        .portfolio-overlay .btn {
-            display: inline-block;
+            height: 5px;
             background: linear-gradient(90deg, #8a2be2 0%, #a742f5 100%);
-            color: white;
-            padding: 10px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            width: fit-content;
+            transition: all 0.5s ease;
+            z-index: -1;
         }
 
-        .portfolio-overlay .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
-        }
-
-        /* Project Categories */
-        .portfolio-categories {
-            margin: 100px 0;
-        }
-
-        .category-section {
-            margin-bottom: 80px;
-        }
-
-        .category-title {
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            position: relative;
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 25px;
             display: inline-block;
+            position: relative;
         }
 
-        .category-title::after {
+        .value-icon span {
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(135deg, #a742f5, #c176ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .value-icon::before {
             content: '';
             position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, #8a2be2 0%, #a742f5 100%);
-            border-radius: 3px;
+            width: 60px;
+            height: 60px;
+            background: rgba(167, 66, 245, 0.1);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: blur(15px);
         }
 
-        /* Testimonials Section */
-        .portfolio-testimonials {
+        .value-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .value-card p {
+            color: #b0b0b0;
+            line-height: 1.7;
+        }
+
+        /* Team Section */
+        .team {
             padding: 100px 0;
             background-color: #0c0c10;
             position: relative;
             overflow: hidden;
         }
 
-        .portfolio-testimonials::before {
+        .team::before {
             content: '';
             position: absolute;
             top: -100px;
@@ -433,104 +491,83 @@
             border-radius: 50%;
         }
 
-        .testimonial-slider {
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
             margin-top: 60px;
-            position: relative;
         }
 
-        .testimonial-item {
+        .team-member {
             background-color: rgba(26, 26, 38, 0.6);
             backdrop-filter: blur(10px);
             border-radius: 20px;
-            padding: 40px;
-            margin: 20px;
+            overflow: hidden;
             border: 1px solid rgba(42, 42, 60, 0.6);
-            position: relative;
             transition: all 0.4s ease;
+            position: relative;
         }
 
-        .testimonial-item:hover {
+        .team-member:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
             border-color: rgba(167, 66, 245, 0.3);
         }
 
-        .testimonial-content {
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #cccccc;
-            position: relative;
-        }
-
-        .testimonial-content::before {
-            content: '"';
-            font-size: 6rem;
-            color: rgba(167, 66, 245, 0.2);
-            position: absolute;
-            top: -50px;
-            left: -20px;
-            font-family: Georgia, serif;
-            z-index: -1;
-        }
-
-        .client-info {
-            display: flex;
-            align-items: center;
-        }
-
-        .client-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
+        .member-image {
+            height: 300px;
             overflow: hidden;
-            margin-right: 20px;
-            border: 2px solid rgba(167, 66, 245, 0.5);
         }
 
-        .client-avatar img {
+        .member-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
         }
 
-        .client-details h4 {
-            font-size: 1.2rem;
+        .team-member:hover .member-image img {
+            transform: scale(1.1);
+        }
+
+        .member-info {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .member-info h3 {
+            font-size: 1.5rem;
             margin-bottom: 5px;
         }
 
-        .client-details p {
+        .member-info p {
             color: #a742f5;
-            font-size: 0.9rem;
+            margin-bottom: 15px;
+            font-weight: 500;
         }
 
-        .testimonial-active {
-            transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            border-color: rgba(167, 66, 245, 0.3);
-            z-index: 10;
-        }
-
-        .testimonial-dots {
+        .member-social {
             display: flex;
             justify-content: center;
-            margin-top: 40px;
-            gap: 10px;
+            gap: 15px;
         }
 
-        .dot {
-            width: 12px;
-            height: 12px;
+        .member-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(42, 42, 60, 0.6);
             border-radius: 50%;
-            background-color: rgba(167, 66, 245, 0.3);
-            cursor: pointer;
+            color: white;
+            text-decoration: none;
             transition: all 0.3s ease;
         }
 
-        .dot.active {
-            background-color: #a742f5;
-            box-shadow: 0 0 10px rgba(167, 66, 245, 0.6);
-            transform: scale(1.2);
+        .member-social a:hover {
+            background: linear-gradient(135deg, #8a2be2 0%, #a742f5 100%);
+            transform: translateY(-3px);
         }
 
         /* CTA Section */
@@ -783,7 +820,7 @@
 
         /* Responsive Design */
         @media (max-width: 1200px) {
-            .portfolio-hero h1 {
+            .about-hero h1 {
                 font-size: 3.2rem;
             }
 
@@ -793,8 +830,17 @@
         }
 
         @media (max-width: 992px) {
-            .portfolio-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                order: -1;
+                margin-bottom: 50px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -826,17 +872,16 @@
                 display: block;
             }
 
-            .portfolio-hero h1 {
+            .about-hero h1 {
                 font-size: 2.5rem;
             }
 
-            .portfolio-hero p {
+            .about-hero p {
                 font-size: 1.1rem;
             }
 
-            .portfolio-filter {
-                flex-direction: column;
-                align-items: center;
+            .stats {
+                grid-template-columns: 1fr;
             }
 
             .cta-buttons {
@@ -851,20 +896,12 @@
         }
 
         @media (max-width: 576px) {
-            .portfolio-hero h1 {
+            .about-hero h1 {
                 font-size: 2.2rem;
             }
 
             .section-title {
                 font-size: 2rem;
-            }
-
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .testimonial-item {
-                padding: 30px 20px;
             }
         }
     </style>
@@ -880,8 +917,8 @@
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="services.html">Services</a></li>
-            <li><a href="portfolio.html" class="active">Portfolio</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="about.html" class="active">About</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
         <button class="mobile-toggle" id="mobileToggle">
@@ -891,245 +928,169 @@
 </header>
 
 <!-- Hero Section -->
-<section class="portfolio-hero">
-    <div class="container portfolio-hero-content">
-        <h1>Our <span class="highlight">Portfolio</span></h1>
-        <p>Explore our collection of successful projects that showcase our expertise in AI, app development, and web solutions.</p>
+<section class="about-hero">
+    <div class="container about-hero-content">
+        <h1>About <span class="highlight">SoftYura</span></h1>
+        <p>We're a team of passionate technologists dedicated to transforming ideas into digital reality through innovative solutions.</p>
     </div>
 </section>
 
-<!-- Portfolio Main Section -->
-<section class="portfolio-main">
+<!-- About Company Section -->
+<section class="about-company">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">Featured <span class="highlight">Projects</span></h2>
-            <p class="section-subtitle">A selection of our most impactful work across various industries and technologies.</p>
+            <h2 class="section-title">Our <span class="highlight">Story</span></h2>
+            <p class="section-subtitle">From humble beginnings to becoming a trusted technology partner for businesses worldwide.</p>
         </div>
 
-        <div class="portfolio-filter">
-            <button class="filter-btn active">All</button>
-            <button class="filter-btn">AI Solutions</button>
-            <button class="filter-btn">Mobile Apps</button>
-            <button class="filter-btn">Web Development</button>
-            <button class="filter-btn">UI/UX Design</button>
-        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Innovating Since 2010</h2>
+                <p>Founded in a small office with just three developers, SoftYura has grown into a full-service technology firm with over 50 employees across three continents. Our journey began with a simple mission: to make advanced technology accessible to businesses of all sizes.</p>
+                <p>Over the years, we've helped startups, mid-sized companies, and Fortune 500 enterprises navigate digital transformation. Our approach combines technical expertise with deep industry knowledge to deliver solutions that drive real business results.</p>
+                <p>What sets us apart is our commitment to continuous learning and innovation. We invest heavily in research and development to stay at the forefront of emerging technologies like AI, blockchain, and IoT.</p>
 
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <img src="/api/placeholder/600/400" alt="AI Chatbot Project">
-                <div class="portfolio-overlay">
-                    <h3>Smart AI Chatbot</h3>
-                    <p>An intelligent chatbot solution for customer service automation.</p>
-                    <a href="#" class="btn">View Case Study</a>
-                </div>
-            </div>
-
-            <div class="portfolio-item">
-                <img src="/api/placeholder/600/400" alt="E-commerce App">
-                <div class="portfolio-overlay">
-                    <h3>E-commerce Mobile App</h3>
-                    <p>A cross-platform shopping app with AR product preview.</p>
-                    <a href="#" class="btn">View Case Study</a>
-                </div>
-            </div>
-
-            <div class="portfolio-item">
-                <img src="/api/placeholder/600/400" alt="Corporate Website">
-                <div class="portfolio-overlay">
-                    <h3>Corporate Website</h3>
-                    <p>A responsive website with interactive elements for a tech company.</p>
-                    <a href="#" class="btn">View Case Study</a>
-                </div>
-            </div>
-
-            <div class="portfolio-item">
-                <img src="/api/placeholder/600/400" alt="Health Dashboard">
-                <div class="portfolio-overlay">
-                    <h3>Health Analytics Dashboard</h3>
-                    <p>Data visualization platform for healthcare providers.</p>
-                    <a href="#" class="btn">View Case Study</a>
-                </div>
-            </div>
-
-            <div class="portfolio-item">
-                <img src="/api/placeholder/600/400" alt="Banking App UI">
-                <div class="portfolio-overlay">
-                    <h3>Banking App UI/UX</h3>
-                    <p>Modern mobile banking interface with enhanced security.</p>
-                    <a href="#" class="btn">View Case Study</a>
-                </div>
-            </div>
-
-            <div class="portfolio-item">
-                <img src="/api/placeholder/600/400" alt="IoT Platform">
-                <div class="portfolio-overlay">
-                    <h3>IoT Management Platform</h3>
-                    <p>Centralized control system for smart home devices.</p>
-                    <a href="#" class="btn">View Case Study</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Project Categories -->
-        <div class="portfolio-categories">
-            <div class="category-section">
-                <h2 class="category-title">AI <span class="highlight">Solutions</span></h2>
-                <div class="portfolio-grid">
-                    <div class="portfolio-item">
-                        <img src="/api/placeholder/600/400" alt="Predictive Analytics">
-                        <div class="portfolio-overlay">
-                            <h3>Predictive Analytics</h3>
-                            <p>Machine learning system for sales forecasting.</p>
-                            <a href="#" class="btn">View Details</a>
-                        </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <h3>250+</h3>
+                        <p>Projects Completed</p>
                     </div>
 
-                    <div class="portfolio-item">
-                        <img src="/api/placeholder/600/400" alt="Computer Vision">
-                        <div class="portfolio-overlay">
-                            <h3>Computer Vision</h3>
-                            <p>Image recognition for quality control in manufacturing.</p>
-                            <a href="#" class="btn">View Details</a>
-                        </div>
+                    <div class="stat-item">
+                        <h3>98%</h3>
+                        <p>Client Satisfaction</p>
                     </div>
 
-                    <div class="portfolio-item">
-                        <img src="/api/placeholder/600/400" alt="NLP Processing">
-                        <div class="portfolio-overlay">
-                            <h3>NLP Processing</h3>
-                            <p>Natural language processing for document analysis.</p>
-                            <a href="#" class="btn">View Details</a>
-                        </div>
+                    <div class="stat-item">
+                        <h3>15+</h3>
+                        <p>Years Experience</p>
                     </div>
                 </div>
             </div>
 
-            <div class="category-section">
-                <h2 class="category-title">Mobile <span class="highlight">Applications</span></h2>
-                <div class="portfolio-grid">
-                    <div class="portfolio-item">
-                        <img src="/api/placeholder/600/400" alt="Fitness App">
-                        <div class="portfolio-overlay">
-                            <h3>Fitness Tracker</h3>
-                            <p>Health and wellness app with personalized workouts.</p>
-                            <a href="#" class="btn">View Details</a>
-                        </div>
-                    </div>
-
-                    <div class="portfolio-item">
-                        <img src="/api/placeholder/600/400" alt="Social Media App">
-                        <div class="portfolio-overlay">
-                            <h3>Social Media Platform</h3>
-                            <p>Community app for niche interest groups.</p>
-                            <a href="#" class="btn">View Details</a>
-                        </div>
-                    </div>
-
-                    <div class="portfolio-item">
-                        <img src="/api/placeholder/600/400" alt="Education App">
-                        <div class="portfolio-overlay">
-                            <h3>Education Platform</h3>
-                            <p>Interactive learning app with gamification.</p>
-                            <a href="#" class="btn">View Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="category-section">
-                <h2 class="category-title">Web <span class="highlight">Development</span></h2>
-                <div class="portfolio-grid">
-                    <div class="portfolio-item">
-                        <img src="/api/placeholder/600/400" alt="SaaS Platform">
-                        <div class="portfolio-overlay">
-                            <h3>SaaS Platform</h3>
-                            <p>Cloud-based software for project management.</p>
-                            <a href="#" class="btn">View Details</a>
-                        </div>
-                    </div>
-
-                    <div class="portfolio-item">
-                        <img src="/api/placeholder/600/400" alt="E-commerce Website">
-                        <div class="portfolio-overlay">
-                            <h3>E-commerce Website</h3>
-                            <p>Custom online store with advanced filtering.</p>
-                            <a href="#" class="btn">View Details</a>
-                        </div>
-                    </div>
-
-                    <div class="portfolio-item">
-                        <img src="/api/placeholder/600/400" alt="Corporate Portal">
-                        <div class="portfolio-overlay">
-                            <h3>Corporate Portal</h3>
-                            <p>Intranet solution for enterprise collaboration.</p>
-                            <a href="#" class="btn">View Details</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="about-image">
+                <img src="/api/placeholder/600/500" alt="SoftYura Team" class="about-image-main">
             </div>
         </div>
     </div>
 </section>
 
-<!-- Testimonials Section -->
-<section class="portfolio-testimonials">
+<!-- Values Section -->
+<section class="values">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">Client <span class="highlight">Testimonials</span></h2>
-            <p class="section-subtitle">Hear what our clients say about working with us on these projects.</p>
+            <h2 class="section-title">Our <span class="highlight">Values</span></h2>
+            <p class="section-subtitle">The principles that guide everything we do at SoftYura.</p>
         </div>
 
-        <div class="testimonial-slider">
-            <div class="testimonial-item testimonial-active">
-                <div class="testimonial-content">
-                    <p>The AI chatbot developed by SoftYura transformed our customer service operations. Response times improved by 80% while maintaining high satisfaction rates. Their team was professional, innovative, and delivered beyond our expectations.</p>
-                </div>
-                <div class="client-info">
-                    <div class="client-avatar">
-                        <img src="/api/placeholder/100/100" alt="Sarah Johnson">
-                    </div>
-                    <div class="client-details">
-                        <h4>Sarah Johnson</h4>
-                        <p>CEO, TechCorp</p>
-                    </div>
-                </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon"><span>🚀</span></div>
+                <h3>Innovation</h3>
+                <p>We constantly push boundaries and explore new technologies to deliver cutting-edge solutions that give our clients a competitive edge.</p>
             </div>
 
-            <div class="testimonial-item">
-                <div class="testimonial-content">
-                    <p>Our e-commerce app developed by SoftYura exceeded all expectations. Their attention to detail and user experience focus resulted in an app that our customers love. We've seen a 150% increase in mobile conversions since launch.</p>
-                </div>
-                <div class="client-info">
-                    <div class="client-avatar">
-                        <img src="/api/placeholder/100/100" alt="Michael Chen">
-                    </div>
-                    <div class="client-details">
-                        <h4>Michael Chen</h4>
-                        <p>Product Manager, RetailGo</p>
-                    </div>
-                </div>
+            <div class="value-card">
+                <div class="value-icon"><span>🤝</span></div>
+                <h3>Integrity</h3>
+                <p>We build trust through transparency, honesty, and ethical business practices in all our relationships and engagements.</p>
             </div>
 
-            <div class="testimonial-item">
-                <div class="testimonial-content">
-                    <p>SoftYura transformed our outdated website into a modern, high-performing digital asset. Their strategic approach and technical expertise helped us increase conversions by 65%. They're now our go-to partner for all digital projects.</p>
-                </div>
-                <div class="client-info">
-                    <div class="client-avatar">
-                        <img src="/api/placeholder/100/100" alt="Emma Rodriguez">
-                    </div>
-                    <div class="client-details">
-                        <h4>Emma Rodriguez</h4>
-                        <p>Marketing Director, GlobalBrand</p>
-                    </div>
-                </div>
+            <div class="value-card">
+                <div class="value-icon"><span>🎯</span></div>
+                <h3>Excellence</h3>
+                <p>We strive for perfection in everything we do, from code quality to customer service, ensuring exceptional results every time.</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon"><span>❤️</span></div>
+                <h3>Passion</h3>
+                <p>Our team genuinely loves what we do, and this enthusiasm translates into creative solutions and outstanding work.</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon"><span>🌍</span></div>
+                <h3>Impact</h3>
+                <p>We measure our success by the positive difference we make for our clients, their customers, and the community.</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon"><span>🧠</span></div>
+                <h3>Learning</h3>
+                <p>We foster a culture of continuous improvement, encouraging our team to constantly expand their knowledge and skills.</p>
             </div>
         </div>
+    </div>
+</section>
 
-        <div class="testimonial-dots">
-            <div class="dot active"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
+<!-- Team Section -->
+<section class="team">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Meet Our <span class="highlight">Team</span></h2>
+            <p class="section-subtitle">The brilliant minds behind SoftYura's success.</p>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="/api/placeholder/400/400" alt="Alex Johnson">
+                </div>
+                <div class="member-info">
+                    <h3>Alex Johnson</h3>
+                    <p>CEO & Founder</p>
+                    <div class="member-social">
+                        <a href="#"><i>li</i></a>
+                        <a href="#"><i>tw</i></a>
+                        <a href="#"><i>gh</i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="/api/placeholder/400/400" alt="Sarah Chen">
+                </div>
+                <div class="member-info">
+                    <h3>Sarah Chen</h3>
+                    <p>CTO</p>
+                    <div class="member-social">
+                        <a href="#"><i>li</i></a>
+                        <a href="#"><i>tw</i></a>
+                        <a href="#"><i>gh</i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="/api/placeholder/400/400" alt="Michael Rodriguez">
+                </div>
+                <div class="member-info">
+                    <h3>Michael Rodriguez</h3>
+                    <p>Lead Developer</p>
+                    <div class="member-social">
+                        <a href="#"><i>li</i></a>
+                        <a href="#"><i>tw</i></a>
+                        <a href="#"><i>gh</i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="/api/placeholder/400/400" alt="Emma Wilson">
+                </div>
+                <div class="member-info">
+                    <h3>Emma Wilson</h3>
+                    <p>UX Designer</p>
+                    <div class="member-social">
+                        <a href="#"><i>li</i></a>
+                        <a href="#"><i>tw</i></a>
+                        <a href="#"><i>gh</i></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -1137,11 +1098,11 @@
 <!-- CTA Section -->
 <section class="cta">
     <div class="cta-content">
-        <h2>Ready to <span class="highlight">Start</span> Your Project?</h2>
-        <p>Let's collaborate to create innovative solutions that drive your success in the digital world. Contact us today to discuss your project.</p>
+        <h2>Ready to <span class="highlight">Collaborate</span>?</h2>
+        <p>Whether you have a project in mind or just want to learn more about our services, we'd love to hear from you.</p>
         <div class="cta-buttons">
             <a href="contact.html" class="cta-button">Get in Touch</a>
-            <a href="services.html" class="secondary-button">Our Services</a>
+            <a href="portfolio.html" class="secondary-button">View Our Work</a>
         </div>
     </div>
 </section>
@@ -1237,45 +1198,6 @@
         } else {
             backToTop.classList.remove('active');
         }
-    });
-
-    // Testimonial slider
-    const testimonialItems = document.querySelectorAll('.testimonial-item');
-    const dots = document.querySelectorAll('.dot');
-    let currentTestimonial = 0;
-
-    function showTestimonial(index) {
-        testimonialItems.forEach(item => item.classList.remove('testimonial-active'));
-        dots.forEach(dot => dot.classList.remove('active'));
-
-        testimonialItems[index].classList.add('testimonial-active');
-        dots[index].classList.add('active');
-        currentTestimonial = index;
-    }
-
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            showTestimonial(index);
-        });
-    });
-
-    // Auto slide
-    setInterval(() => {
-        currentTestimonial = (currentTestimonial + 1) % testimonialItems.length;
-        showTestimonial(currentTestimonial);
-    }, 5000);
-
-    // Portfolio filter
-    const filterBtns = document.querySelectorAll('.filter-btn');
-
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            // In a real implementation, you would filter the portfolio items here
-            // This is just a placeholder for the UI
-        });
     });
 
     // Smooth scrolling for anchor links
